@@ -22,7 +22,7 @@ Form: https://hackathon.lexsi.ai/submission/ (due Nov 15, 11:59 PM AoE = **Nov 1
 
 **HF dataset collection:** https://huggingface.co/collections/MOREN808/pocket-tiny-aya-safety-under-quantization-data-6af9e58cb73d57d870ee726d
 
-**Write-up / article:** [HF article link, if posted with PRO]. Otherwise the same article on HF: https://moren808-pocket.static.hf.space/article.html (also on GitHub: https://github.com/neromtoobad/pocket/blob/main/writeup/ARTICLE.md)
+**Write-up / article:** https://moren808-pocket.static.hf.space/article.html (same text on GitHub: https://github.com/neromtoobad/pocket/blob/main/writeup/ARTICLE.md)
 
 **GitHub repo:** https://github.com/neromtoobad/pocket
 

@@ -8,7 +8,7 @@ Pocket measures whether [Tiny Aya](https://huggingface.co/CohereLabs/tiny-aya-gl
 
 | | |
 |---|---|
-| Write-up | [`writeup/ARTICLE.md`](writeup/ARTICLE.md) |
+| Write-up | [on Hugging Face](https://moren808-pocket.static.hf.space/article.html) · [`writeup/ARTICLE.md`](writeup/ARTICLE.md) |
 | Dataset (prompts, every answer, judge scores, tables) | [MOREN808/pocket-safety-evals](https://huggingface.co/datasets/MOREN808/pocket-safety-evals) |
 | GGUF builds + imatrix files | [MOREN808/tiny-aya-global-pocket-gguf](https://huggingface.co/MOREN808/tiny-aya-global-pocket-gguf) |
 | Browse every answer | [MOREN808/pocket Space](https://huggingface.co/spaces/MOREN808/pocket) |
