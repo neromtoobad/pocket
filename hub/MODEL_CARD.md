@@ -39,6 +39,9 @@ For reference, the official f16 file refuses 74 / 56 / 29 / 51 / 48 % and the of
 
 ## How they were made
 
+Code: [github.com/neromtoobad/pocket](https://github.com/neromtoobad/pocket).
+
+
 llama.cpp b12403, from Cohere's official `tiny-aya-global-f16.gguf`:
 
 ```bash

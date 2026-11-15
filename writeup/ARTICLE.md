@@ -253,7 +253,7 @@ One Apple M1 Pro laptop with 16 GB RAM, about [PENDING] hours in total, no cloud
 
 - HF dataset collection: [Pocket data](https://huggingface.co/collections/MOREN808/pocket-tiny-aya-safety-under-quantization-data-6af9e58cb73d57d870ee726d), with the dataset [MOREN808/pocket-safety-evals](https://huggingface.co/datasets/MOREN808/pocket-safety-evals) (prompts, all generations, all judge scores, tables, CuratorKIT outputs, sweep logs)
 - HF model collection: [Pocket models](https://huggingface.co/collections/MOREN808/pocket-tiny-aya-gguf-builds-models-6af9e58d7256661d47abf08d), with [MOREN808/tiny-aya-global-pocket-gguf](https://huggingface.co/MOREN808/tiny-aya-global-pocket-gguf) (q3_k_m / q2_k builds, imatrix files, protected builds)
-- GitHub repo: [PENDING link]
+- GitHub repo: [neromtoobad/pocket](https://github.com/neromtoobad/pocket)
 - Demo Space: [MOREN808/pocket](https://huggingface.co/spaces/MOREN808/pocket) (browse every answer by language, prompt and build)
 
 ## Documentation and reproduction

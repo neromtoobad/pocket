@@ -40,6 +40,8 @@ Every prompt, model answer and judge score behind the Pocket write-up for the Le
 
 **Main finding:** English refusals barely move from 16-bit to 2-bit (74% → 75%). At 3-bit, Swahili refusals fall 17 points and Hausa attack success rises 12 points while the model still reads as well as before. At 2-bit, refusals almost vanish outside English (Yorùbá 2%).
 
+Code and reproduction steps: [github.com/neromtoobad/pocket](https://github.com/neromtoobad/pocket).
+
 ## What's inside
 
 | Path | Contents |
