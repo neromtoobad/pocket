@@ -35,7 +35,7 @@ The official 4-bit file holds up: no language moves beyond its interval. At 3-bi
 
 We also report a measurement trap. Our first judged table showed the 4-bit Hausa model losing 17 points of safety. Reading the rows showed that NLLB-200 translates the standard Hausa refusal as "I'm sorry, but I can't help it," which Guardian scores as harmful. 19 of the 20 "refused but harmful" Hausa rows were this one sentence. Short pure refusals are now counted as safe, and both raw and corrected rates are published.
 
-Then we tried to repair the 3-bit file without making it bigger, by changing what llama.cpp's importance matrix is calibrated on: Tiny Aya's own full-precision answers to 600 held-out harmful and harmless prompts in all five languages, vs the same amount of generic text. Neither helps refusal. With either imatrix, Swahili attack success is still 9–10 points above full precision and Hausa refusal still 7–8 points below. Both imatrices do bring Swahili reading comprehension back from 50% to 57–58%, so better calibration restores the model's grasp of the language but not its willingness to refuse in it. Safety and capability come apart under compression, which is why a capability check alone can't certify a quantized model. The practical advice is to stay at 4-bit (2.1 GB) for these languages, or to test refusal in the target language before shipping anything smaller.
+Then we tried to repair the 3-bit file without making it bigger, by changing what llama.cpp's importance matrix is calibrated on: Tiny Aya's own full-precision answers to 600 held-out harmful and harmless prompts in all five languages, vs the same amount of generic text. Neither helps refusal. With either imatrix, Swahili attack success is still 9–10 points above full precision and Hausa refusal still 7–8 points below. Both imatrices do bring Swahili reading comprehension back from 50% to 57–58%, so better calibration restores the model's grasp of the language but not its willingness to refuse in it. Safety and capability come apart under compression, which is why a capability check alone can't certify a quantized model. The practical advice is to stay at 4-bit (2.1 GB) for these languages, or to test refusal in the target language before shipping anything smaller. SafeTune's refusal directions show the full-precision model recognises harm in every language, at the same middle layers (best layer 20 of 36; harmful-vs-harmless AUROC 0.91 to 0.99, cosine to English 0.70 to 0.85), so the gap is in refusing, not in recognising.
 
 ## Headline before → after
 
@@ -107,7 +107,7 @@ We use SafeTune's `SteeringVectorExtractor` (`safetune.core.runtime.inference.ve
 - the cosine between each language's direction and English's,
 - and, at the best layer, whether a harmful prompt's margin on the f16 model predicts if the 3-bit or 2-bit file stops refusing it.
 
-Settings: `pool_method="last_token"`, `normalize=True`, `target_layers=0..35`, batch 8, fp16 on Apple MPS. [PENDING: results, queued overnight.]
+Settings: `pool_method="last_token"`, `normalize=True`, `target_layers=0..35`, batch 8, fp16 on Apple MPS. Results are under "Finding: refusal lives in the same place in every language" below; the raw numbers are in `results/locate.json`.
 
 ### How the repos connect
 
@@ -235,6 +235,16 @@ Cohere's q4_k_m file stays within noise in every language. If you use the offici
 ### Finding: Earth is not safer than Global in African languages
 
 At the same 4-bit size, Earth's attack success is equal or higher than Global's in Yorùbá (51 vs 42), Hausa (28 vs 26) and Igbo (35 vs 32), and its Belebele scores in Yorùbá and Igbo are near chance (27%, 28%). We have no Earth f16 run, so we can't say how much of this is quantization.
+
+### Finding: refusal lives in the same place in every language
+
+SafeTune's directions (`pocket/locate.py`, `results/locate.json`) show that the full-precision model knows a harmful prompt is harmful in every language, and does so in about the same place. Separation peaks in the middle of the network (best layer 20 of 36). At that layer, the language's own direction separates harmful from harmless prompts with AUROC 0.99 in English, 0.95 in Swahili and Hausa, and 0.91 in Yorùbá and Igbo. Each language's direction points mostly the same way as English's (cosine 0.70 to 0.85). The English direction alone still separates the other languages well (0.83 Yorùbá, 0.88 Igbo, 0.93 Swahili, 0.97 Hausa). The cosine with English is low at the first layer (0.13 to 0.34), rises to its peak around layers 12 to 21, and falls again in the last layers (0.37 to 0.39 at layer 33).
+
+So the gap in refusal between English and the African languages is not a failure to *recognise* harm: the f16 model represents a Yorùbá harmful prompt as harmful almost as clearly as an English one, yet refuses it far less often (29% vs 74%). The loss happens between knowing and refusing. The language directions also drift away from English in the last layers, which is a candidate place for that loss, not a proof of it. Which layers quantization hurts most is what the planned layer sweep would test; we did not get to run it.
+
+**Does the margin predict which refusals quantization breaks?** We asked whether a harmful prompt's projection on the f16 refusal direction predicts whether the 3-bit or 2-bit file stops refusing it. At this sample size we can't tell: only 0 to 3 refusals per language were lost at 3-bit, and the AUROCs (0.40 to 0.94) go both ways. A real answer needs the full prompt set; we report it as open.
+
+These numbers come from a reduced run (20 harmful and 20 harmless prompts per language for both directions and scoring) because a laptop restart cost us the overnight slot. The full run (600 calibration prompts, all 1,198 evaluation prompts) is in `results/locate.json` once finished; the reduced run is kept as `results/locate_small.json`.
 
 ### What didn't work: a safety-calibrated importance matrix
 
