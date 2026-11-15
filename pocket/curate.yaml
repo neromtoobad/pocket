@@ -1,0 +1,24 @@
+name: pocket_prompts
+version: "1.0.0"
+readers:
+  - type: jsonl
+    path: data/gated_prompts.jsonl
+    format: alpaca
+gates:
+  - type: schema
+    required_fields: [instruction]
+    min_tokens: 2
+    max_tokens: 512
+    use_tiktoken: false
+normalizers:
+  - type: text_cleaner
+    transforms:
+      strip_html: true
+      normalise_unicode: true
+      fix_encoding_artifacts: true
+      collapse_whitespace: true
+      remove_control_chars: true
+  - type: exact_dedup
+exporters:
+  - type: alpaca
+  - type: messages

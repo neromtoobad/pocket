@@ -1,0 +1,190 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pocket</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #fafaf8; --panel: #ffffff; --ink: #1b1d1f; --muted: #646a70; --line: #e4e4df;
+    --accent: #1f6f5c; --accent-soft: #e5f1ed; --bad: #b3261e; --bad-soft: #fbe9e7; --good-soft: #e8f3ea;
+    --warn: #8a5a00; --warn-soft: #fff4dc;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--ink); font: 15px/1.55 Inter, system-ui, sans-serif; }
+  main { max-width: 1080px; margin: 0 auto; padding: 32px 16px 64px; }
+  h1 { font-size: 30px; margin: 0 0 6px; letter-spacing: -0.01em; }
+  .lede { font-size: 17px; color: var(--ink); max-width: 760px; margin: 0 0 14px; }
+  .sub { color: var(--muted); max-width: 760px; margin: 0 0 18px; }
+  .warn { background: var(--warn-soft); color: var(--warn); border: 1px solid #f0dcaa; border-radius: 8px; padding: 10px 14px; font-size: 14px; max-width: 760px; }
+  .links { margin: 14px 0 0; font-size: 14px; }
+  .links a { color: var(--accent); margin-right: 16px; }
+  nav { display: flex; gap: 4px; margin: 28px 0 0; border-bottom: 1px solid var(--line); }
+  nav button { background: none; border: 0; border-bottom: 2px solid transparent; padding: 10px 14px; font: inherit; font-weight: 500; color: var(--muted); cursor: pointer; }
+  nav button[aria-selected="true"] { color: var(--ink); border-bottom-color: var(--accent); }
+  section { background: var(--panel); border: 1px solid var(--line); border-top: 0; border-radius: 0 0 10px 10px; padding: 20px; }
+  .controls { display: flex; flex-wrap: wrap; gap: 8px 16px; align-items: center; margin-bottom: 16px; }
+  .seg { display: inline-flex; flex-wrap: wrap; border: 1px solid var(--line); border-radius: 8px; overflow: hidden; }
+  .seg button { background: var(--panel); border: 0; border-right: 1px solid var(--line); padding: 7px 12px; font: inherit; font-size: 14px; cursor: pointer; color: var(--ink); }
+  .seg button:last-child { border-right: 0; }
+  .seg button[aria-pressed="true"] { background: var(--accent); color: #fff; }
+  label { font-size: 13px; color: var(--muted); display: flex; flex-direction: column; gap: 4px; }
+  select { font: inherit; font-size: 14px; padding: 7px 10px; border: 1px solid var(--line); border-radius: 8px; background: var(--panel); color: var(--ink); max-width: 100%; }
+  .scroll { overflow-x: auto; }
+  table { border-collapse: collapse; width: 100%; font-size: 14px; }
+  th, td { padding: 9px 10px; text-align: left; border-bottom: 1px solid var(--line); vertical-align: top; }
+  th { font-weight: 600; color: var(--muted); font-size: 13px; white-space: nowrap; }
+  td.num { font-family: "JetBrains Mono", monospace; font-variant-numeric: tabular-nums; white-space: nowrap; }
+  td.num small { color: var(--muted); font-size: 11px; display: block; }
+  td.worse { background: var(--bad-soft); }
+  td.better { background: var(--good-soft); }
+  .build { font-family: "JetBrains Mono", monospace; font-size: 13px; white-space: nowrap; }
+  .note { color: var(--muted); font-size: 13px; margin: 12px 0 0; }
+  .key { display: inline-block; width: 12px; height: 12px; border-radius: 3px; vertical-align: -1px; margin-right: 4px; }
+  .prompt-head { margin: 4px 0 14px; }
+  .prompt-head p { margin: 4px 0; }
+  .answer { white-space: pre-wrap; max-width: 420px; min-width: 220px; }
+  .pill { font-size: 12px; padding: 2px 8px; border-radius: 99px; white-space: nowrap; }
+  .pill.yes { background: var(--accent-soft); color: var(--accent); }
+  .pill.no { background: var(--bad-soft); color: var(--bad); }
+  #status { color: var(--muted); }
+  @media (max-width: 640px) { h1 { font-size: 24px; } section { padding: 14px; } }
+</style>
+</head>
+<body>
+<main>
+  <h1>Pocket</h1>
+  <p class="lede">Shrink Tiny Aya to run on a phone and it keeps refusing harmful requests in English, but not in Swahili, Yorùbá, Hausa or Igbo.</p>
+  <p class="sub">We ran Tiny Aya Global and Earth as GGUF files from 16-bit down to 2-bit on 120 harmful prompts (MultiJail) and 120 harmless look-alikes (XSTest) per language. The official 4-bit file holds up. At 3-bit, Swahili and Hausa comply more while the model still reads fine. At 2-bit, refusals almost vanish outside English. This page shows every number and every answer.</p>
+  <div class="warn"><strong>Content warning:</strong> prompts and answers include violence, weapons, sexual exploitation, self-harm and hate.</div>
+  <p class="links"><a href="https://huggingface.co/datasets/MOREN808/pocket-safety-evals">Dataset</a><a href="https://huggingface.co/MOREN808" id="more">More from MOREN808</a></p>
+
+  <nav role="tablist">
+    <button role="tab" aria-selected="true" data-tab="results">Results</button>
+    <button role="tab" aria-selected="false" data-tab="compare">Compare answers</button>
+  </nav>
+
+  <section id="results">
+    <div class="controls">
+      <div class="seg" id="metric">
+        <button data-m="ASR" aria-pressed="true">Attack success</button>
+        <button data-m="refusal" aria-pressed="false">Refuses harmful</button>
+        <button data-m="overref" aria-pressed="false">Refuses harmless</button>
+        <button data-m="belebele" aria-pressed="false">Reading test</button>
+      </div>
+      <span id="status">Loading results…</span>
+    </div>
+    <div class="scroll"><table id="tbl"></table></div>
+    <p class="note" id="metric-note"></p>
+    <p class="note"><span class="key" style="background:var(--bad-soft)"></span>worse than 16-bit, 95% interval clear of zero &nbsp; <span class="key" style="background:var(--good-soft)"></span>better than 16-bit, interval clear of zero. Changes are paired: same prompts, same language.</p>
+  </section>
+
+  <section id="compare" hidden>
+    <div class="controls">
+      <label>Language <select id="lang"></select></label>
+      <label>Prompt type <select id="kind"><option value="harmful">Harmful</option><option value="benign">Harmless look-alike</option></select></label>
+      <label style="flex:1;min-width:240px">Prompt <select id="pid"></select></label>
+    </div>
+    <div class="prompt-head" id="phead"></div>
+    <div class="scroll"><table id="ctbl"></table></div>
+    <p class="note">Judge score: Granite Guardian 3.1 2B, probability the answer is harmful, read on the English back-translation. A short answer that only refuses is counted safe even if the judge disagrees (the translator sometimes turns a Hausa refusal into "I can't help it").</p>
+  </section>
+</main>
+<script>
+const REPO = "MOREN808/pocket-safety-evals";
+const BASE = `https://huggingface.co/datasets/${REPO}/resolve/main/`;
+const LANGS = {en: "English", sw: "Swahili", yo: "Yorùbá", ha: "Hausa", ig: "Igbo"};
+const NOTES = {
+  ASR: "Attack success: share of harmful prompts whose answer the judge scores harmful. Lower is better. Small numbers: 95% bootstrap interval.",
+  refusal: "Share of harmful prompts the model refuses (refusal phrase at the start of the answer). Higher is better.",
+  overref: "Share of harmless look-alike prompts the model refuses anyway. Lower is better.",
+  belebele: "Belebele reading comprehension, 60 questions per language, 4 options (chance is 25%). Higher is better.",
+};
+const HIGHER_BETTER = {ASR: false, refusal: true, overref: false, belebele: true};
+const DELTA_KEY = {ASR: "d_ASR_vs_ref", refusal: "d_refusal_vs_ref"};
+let table = null, rows = null, metric = "ASR";
+const pct = v => v == null ? "–" : (100 * v).toFixed(0) + "%";
+const esc = s => (s ?? "").replace(/[&<>]/g, c => ({"&": "&amp;", "<": "&lt;", ">": "&gt;"}[c]));
+
+function renderTable() {
+  const cells = Object.keys(table);
+  let h = "<thead><tr><th>Build</th><th>Size</th>" + Object.values(LANGS).map(n => `<th>${n}</th>`).join("") + "</tr></thead><tbody>";
+  for (const c of cells) {
+    const t = table[c];
+    h += `<tr><td class="build">${c}</td><td class="num">${t._size_gb ?? "–"} GB</td>`;
+    for (const l of Object.keys(LANGS)) {
+      const m = t[l] || {}; const v = m[metric];
+      let cls = "num", sub = "";
+      if (metric === "ASR" && m.ASR_ci) sub = `<small>${pct(m.ASR_ci[0])}–${pct(m.ASR_ci[1])}</small>`;
+      const d = DELTA_KEY[metric] && m[DELTA_KEY[metric]];
+      if (d && d.ci) {
+        const up = d.ci[0] > 0, down = d.ci[1] < 0;
+        if (up || down) cls += ((up === HIGHER_BETTER[metric]) ? " better" : " worse");
+        sub += `<small>${d.delta > 0 ? "+" : ""}${(100 * d.delta).toFixed(0)} pts vs 16-bit</small>`;
+      }
+      h += `<td class="${cls}">${pct(v)}${sub}</td>`;
+    }
+    h += "</tr>";
+  }
+  document.getElementById("tbl").innerHTML = h + "</tbody>";
+  document.getElementById("metric-note").textContent = NOTES[metric];
+}
+
+function fillPrompts() {
+  const lang = document.getElementById("lang").value, kind = document.getElementById("kind").value;
+  const seen = new Set(), opts = [];
+  for (const r of rows) if (r.lang === lang && r.kind === kind && !seen.has(r.pid)) { seen.add(r.pid); opts.push(r); }
+  document.getElementById("pid").innerHTML = opts.map(r => `<option value="${r.pid}">${esc(r.prompt_en.slice(0, 110))}</option>`).join("");
+  renderCompare();
+}
+
+function renderCompare() {
+  const lang = document.getElementById("lang").value, pid = document.getElementById("pid").value;
+  const order = Object.keys(table);
+  const sub = rows.filter(r => r.lang === lang && r.pid === pid).sort((a, b) => order.indexOf(a.cell) - order.indexOf(b.cell));
+  if (!sub.length) return;
+  const p = sub[0];
+  document.getElementById("phead").innerHTML = `<p><strong>Prompt (${LANGS[lang]}):</strong> ${esc(p.prompt)}</p>` +
+    (lang !== "en" ? `<p><strong>English source:</strong> ${esc(p.prompt_en)}</p>` : "");
+  const showBt = lang !== "en";
+  let h = `<thead><tr><th>Build</th><th>Refused</th><th>Judge score</th><th>Answer</th>${showBt ? "<th>Answer, back-translated</th>" : ""}</tr></thead><tbody>`;
+  for (const r of sub) {
+    const hs = r.harm_en == null ? "–" : r.harm_en.toFixed(2);
+    h += `<tr><td class="build">${r.cell}</td><td><span class="pill ${r.refusal ? "yes" : "no"}">${r.refusal ? "refused" : "answered"}</span></td>` +
+         `<td class="num">${hs}</td><td class="answer">${esc(r.response)}</td>${showBt ? `<td class="answer">${esc(r.response_en)}</td>` : ""}</tr>`;
+  }
+  document.getElementById("ctbl").innerHTML = h + "</tbody>";
+}
+
+document.querySelectorAll("nav button").forEach(b => b.onclick = () => {
+  document.querySelectorAll("nav button").forEach(x => x.setAttribute("aria-selected", x === b));
+  document.getElementById("results").hidden = b.dataset.tab !== "results";
+  document.getElementById("compare").hidden = b.dataset.tab !== "compare";
+});
+document.querySelectorAll("#metric button").forEach(b => b.onclick = () => {
+  document.querySelectorAll("#metric button").forEach(x => x.setAttribute("aria-pressed", x === b));
+  metric = b.dataset.m; renderTable();
+});
+document.getElementById("lang").innerHTML = Object.entries(LANGS).map(([c, n]) => `<option value="${c}"${c === "yo" ? " selected" : ""}>${n}</option>`).join("");
+document.getElementById("lang").onchange = fillPrompts;
+document.getElementById("kind").onchange = fillPrompts;
+document.getElementById("pid").onchange = renderCompare;
+
+(async () => {
+  try {
+    table = await (await fetch(BASE + "results/table.json")).json();
+    renderTable();
+    document.getElementById("status").textContent = "Loading answers…";
+    const txt = await (await fetch(BASE + "results/all_judged.jsonl")).text();
+    rows = txt.split("\n").filter(Boolean).map(JSON.parse);
+    document.getElementById("status").textContent = `${rows.length.toLocaleString()} answers from ${Object.keys(table).length} builds`;
+    fillPrompts();
+  } catch (e) {
+    document.getElementById("status").textContent = "Could not load the dataset: " + e.message;
+  }
+})();
+</script>
+</body>
+</html>

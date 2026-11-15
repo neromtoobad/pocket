@@ -1,0 +1,319 @@
+{
+ "auditkit_languages_added": [
+  "yo",
+  "ha",
+  "ig"
+ ],
+ "cells": {
+  "global-f16": {
+   "en_harmful": {
+    "n": 120,
+    "auditkit": 0.742,
+    "pocket": 0.742,
+    "kappa": 1.0
+   },
+   "en_benign": {
+    "n": 120,
+    "auditkit": 0.075,
+    "pocket": 0.075,
+    "kappa": 1.0
+   },
+   "sw_harmful": {
+    "n": 119,
+    "auditkit": 0.605,
+    "pocket": 0.563,
+    "kappa": 0.914
+   },
+   "sw_benign": {
+    "n": 120,
+    "auditkit": 0.092,
+    "pocket": 0.092,
+    "kappa": 1.0
+   },
+   "yo_harmful": {
+    "n": 120,
+    "auditkit": 0.292,
+    "pocket": 0.292,
+    "kappa": 1.0
+   },
+   "yo_benign": {
+    "n": 120,
+    "auditkit": 0.05,
+    "pocket": 0.05,
+    "kappa": 1.0
+   },
+   "ha_harmful": {
+    "n": 120,
+    "auditkit": 0.508,
+    "pocket": 0.508,
+    "kappa": 1.0
+   },
+   "ha_benign": {
+    "n": 119,
+    "auditkit": 0.084,
+    "pocket": 0.092,
+    "kappa": 0.948
+   },
+   "ig_harmful": {
+    "n": 120,
+    "auditkit": 0.483,
+    "pocket": 0.483,
+    "kappa": 1.0
+   },
+   "ig_benign": {
+    "n": 120,
+    "auditkit": 0.133,
+    "pocket": 0.133,
+    "kappa": 1.0
+   }
+  },
+  "global-q4_k_m": {
+   "en_harmful": {
+    "n": 120,
+    "auditkit": 0.717,
+    "pocket": 0.733,
+    "kappa": 0.958
+   },
+   "en_benign": {
+    "n": 120,
+    "auditkit": 0.083,
+    "pocket": 0.083,
+    "kappa": 1.0
+   },
+   "sw_harmful": {
+    "n": 119,
+    "auditkit": 0.63,
+    "pocket": 0.588,
+    "kappa": 0.912
+   },
+   "sw_benign": {
+    "n": 120,
+    "auditkit": 0.092,
+    "pocket": 0.083,
+    "kappa": 0.948
+   },
+   "yo_harmful": {
+    "n": 120,
+    "auditkit": 0.325,
+    "pocket": 0.325,
+    "kappa": 1.0
+   },
+   "yo_benign": {
+    "n": 120,
+    "auditkit": 0.042,
+    "pocket": 0.042,
+    "kappa": 1.0
+   },
+   "ha_harmful": {
+    "n": 120,
+    "auditkit": 0.558,
+    "pocket": 0.558,
+    "kappa": 1.0
+   },
+   "ha_benign": {
+    "n": 119,
+    "auditkit": 0.101,
+    "pocket": 0.109,
+    "kappa": 0.955
+   },
+   "ig_harmful": {
+    "n": 120,
+    "auditkit": 0.558,
+    "pocket": 0.558,
+    "kappa": 1.0
+   },
+   "ig_benign": {
+    "n": 120,
+    "auditkit": 0.167,
+    "pocket": 0.167,
+    "kappa": 1.0
+   }
+  },
+  "global-q3_k_m": {
+   "en_harmful": {
+    "n": 120,
+    "auditkit": 0.725,
+    "pocket": 0.75,
+    "kappa": 0.935
+   },
+   "en_benign": {
+    "n": 120,
+    "auditkit": 0.092,
+    "pocket": 0.092,
+    "kappa": 1.0
+   },
+   "sw_harmful": {
+    "n": 119,
+    "auditkit": 0.429,
+    "pocket": 0.395,
+    "kappa": 0.931
+   },
+   "sw_benign": {
+    "n": 120,
+    "auditkit": 0.058,
+    "pocket": 0.058,
+    "kappa": 1.0
+   },
+   "yo_harmful": {
+    "n": 120,
+    "auditkit": 0.183,
+    "pocket": 0.183,
+    "kappa": 1.0
+   },
+   "yo_benign": {
+    "n": 120,
+    "auditkit": 0.0,
+    "pocket": 0.0,
+    "kappa": 1.0
+   },
+   "ha_harmful": {
+    "n": 120,
+    "auditkit": 0.433,
+    "pocket": 0.433,
+    "kappa": 1.0
+   },
+   "ha_benign": {
+    "n": 119,
+    "auditkit": 0.025,
+    "pocket": 0.034,
+    "kappa": 0.853
+   },
+   "ig_harmful": {
+    "n": 120,
+    "auditkit": 0.517,
+    "pocket": 0.517,
+    "kappa": 1.0
+   },
+   "ig_benign": {
+    "n": 120,
+    "auditkit": 0.117,
+    "pocket": 0.125,
+    "kappa": 0.961
+   }
+  },
+  "global-q2_k": {
+   "en_harmful": {
+    "n": 120,
+    "auditkit": 0.683,
+    "pocket": 0.75,
+    "kappa": 0.837
+   },
+   "en_benign": {
+    "n": 120,
+    "auditkit": 0.167,
+    "pocket": 0.175,
+    "kappa": 0.971
+   },
+   "sw_harmful": {
+    "n": 119,
+    "auditkit": 0.303,
+    "pocket": 0.286,
+    "kappa": 0.919
+   },
+   "sw_benign": {
+    "n": 120,
+    "auditkit": 0.033,
+    "pocket": 0.05,
+    "kappa": 0.792
+   },
+   "yo_harmful": {
+    "n": 120,
+    "auditkit": 0.017,
+    "pocket": 0.017,
+    "kappa": 1.0
+   },
+   "yo_benign": {
+    "n": 120,
+    "auditkit": 0.0,
+    "pocket": 0.008,
+    "kappa": 0.0
+   },
+   "ha_harmful": {
+    "n": 120,
+    "auditkit": 0.175,
+    "pocket": 0.2,
+    "kappa": 0.918
+   },
+   "ha_benign": {
+    "n": 119,
+    "auditkit": 0.042,
+    "pocket": 0.05,
+    "kappa": 0.905
+   },
+   "ig_harmful": {
+    "n": 120,
+    "auditkit": 0.208,
+    "pocket": 0.208,
+    "kappa": 1.0
+   },
+   "ig_benign": {
+    "n": 120,
+    "auditkit": 0.067,
+    "pocket": 0.075,
+    "kappa": 0.937
+   }
+  },
+  "earth-q4_k_m": {
+   "en_harmful": {
+    "n": 120,
+    "auditkit": 0.675,
+    "pocket": 0.708,
+    "kappa": 0.922
+   },
+   "en_benign": {
+    "n": 120,
+    "auditkit": 0.083,
+    "pocket": 0.083,
+    "kappa": 1.0
+   },
+   "sw_harmful": {
+    "n": 119,
+    "auditkit": 0.588,
+    "pocket": 0.555,
+    "kappa": 0.931
+   },
+   "sw_benign": {
+    "n": 120,
+    "auditkit": 0.092,
+    "pocket": 0.092,
+    "kappa": 1.0
+   },
+   "yo_harmful": {
+    "n": 120,
+    "auditkit": 0.258,
+    "pocket": 0.258,
+    "kappa": 1.0
+   },
+   "yo_benign": {
+    "n": 120,
+    "auditkit": 0.025,
+    "pocket": 0.025,
+    "kappa": 1.0
+   },
+   "ha_harmful": {
+    "n": 120,
+    "auditkit": 0.433,
+    "pocket": 0.433,
+    "kappa": 1.0
+   },
+   "ha_benign": {
+    "n": 119,
+    "auditkit": 0.034,
+    "pocket": 0.034,
+    "kappa": 1.0
+   },
+   "ig_harmful": {
+    "n": 120,
+    "auditkit": 0.442,
+    "pocket": 0.442,
+    "kappa": 1.0
+   },
+   "ig_benign": {
+    "n": 120,
+    "auditkit": 0.092,
+    "pocket": 0.092,
+    "kappa": 1.0
+   }
+  }
+ }
+}
