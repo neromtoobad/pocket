@@ -1,1064 +1,1064 @@
 {
  "model": "/Users/mac/Documents/Hacks/lexsi/models/hf-tiny-aya-global",
  "n_layers": 36,
- "best_layer": 20,
+ "best_layer": 22,
  "pool": "last_token",
  "directions_from": "data/calib_prompts.jsonl (held out)",
  "scored_on": "data/prompts.jsonl",
  "per_layer": {
   "0": {
    "en": {
-    "auroc_own": 0.6675,
-    "auroc_en_dir": 0.6675,
+    "auroc_own": 0.7609,
+    "auroc_en_dir": 0.7609,
     "cos_to_en": 1.0
    },
    "sw": {
-    "auroc_own": 0.58,
-    "auroc_en_dir": 0.5975,
-    "cos_to_en": 0.1306
+    "auroc_own": 0.5827,
+    "auroc_en_dir": 0.6206,
+    "cos_to_en": 0.231
    },
    "yo": {
-    "auroc_own": 0.735,
-    "auroc_en_dir": 0.6425,
-    "cos_to_en": 0.2733
+    "auroc_own": 0.7024,
+    "auroc_en_dir": 0.719,
+    "cos_to_en": 0.3057
    },
    "ha": {
-    "auroc_own": 0.65,
-    "auroc_en_dir": 0.68,
-    "cos_to_en": 0.3439
+    "auroc_own": 0.6499,
+    "auroc_en_dir": 0.6578,
+    "cos_to_en": 0.3326
    },
    "ig": {
-    "auroc_own": 0.6625,
-    "auroc_en_dir": 0.76,
-    "cos_to_en": 0.1289
+    "auroc_own": 0.7517,
+    "auroc_en_dir": 0.6748,
+    "cos_to_en": 0.2165
    }
   },
   "1": {
    "en": {
-    "auroc_own": 0.765,
-    "auroc_en_dir": 0.765,
+    "auroc_own": 0.8188,
+    "auroc_en_dir": 0.8188,
     "cos_to_en": 1.0
    },
    "sw": {
-    "auroc_own": 0.6125,
-    "auroc_en_dir": 0.7375,
-    "cos_to_en": 0.3449
+    "auroc_own": 0.6322,
+    "auroc_en_dir": 0.7584,
+    "cos_to_en": 0.4562
    },
    "yo": {
-    "auroc_own": 0.735,
-    "auroc_en_dir": 0.725,
-    "cos_to_en": 0.4306
+    "auroc_own": 0.7185,
+    "auroc_en_dir": 0.7562,
+    "cos_to_en": 0.4085
    },
    "ha": {
-    "auroc_own": 0.71,
-    "auroc_en_dir": 0.7575,
-    "cos_to_en": 0.4731
+    "auroc_own": 0.6776,
+    "auroc_en_dir": 0.7015,
+    "cos_to_en": 0.4965
    },
    "ig": {
-    "auroc_own": 0.7125,
-    "auroc_en_dir": 0.8975,
-    "cos_to_en": 0.3049
+    "auroc_own": 0.8035,
+    "auroc_en_dir": 0.7275,
+    "cos_to_en": 0.4865
    }
   },
   "2": {
    "en": {
-    "auroc_own": 0.8425,
-    "auroc_en_dir": 0.8425,
+    "auroc_own": 0.8651,
+    "auroc_en_dir": 0.8651,
     "cos_to_en": 1.0
    },
    "sw": {
-    "auroc_own": 0.75,
-    "auroc_en_dir": 0.7775,
-    "cos_to_en": 0.7033
+    "auroc_own": 0.7252,
+    "auroc_en_dir": 0.7939,
+    "cos_to_en": 0.7826
    },
    "yo": {
-    "auroc_own": 0.8,
-    "auroc_en_dir": 0.825,
-    "cos_to_en": 0.6027
+    "auroc_own": 0.7712,
+    "auroc_en_dir": 0.7726,
+    "cos_to_en": 0.6854
    },
    "ha": {
-    "auroc_own": 0.795,
-    "auroc_en_dir": 0.775,
-    "cos_to_en": 0.7137
+    "auroc_own": 0.723,
+    "auroc_en_dir": 0.7051,
+    "cos_to_en": 0.7223
    },
    "ig": {
-    "auroc_own": 0.85,
-    "auroc_en_dir": 0.895,
-    "cos_to_en": 0.6318
+    "auroc_own": 0.7808,
+    "auroc_en_dir": 0.729,
+    "cos_to_en": 0.7723
    }
   },
   "3": {
    "en": {
-    "auroc_own": 0.86,
-    "auroc_en_dir": 0.86,
+    "auroc_own": 0.8986,
+    "auroc_en_dir": 0.8986,
     "cos_to_en": 1.0
    },
    "sw": {
-    "auroc_own": 0.87,
-    "auroc_en_dir": 0.825,
-    "cos_to_en": 0.5124
+    "auroc_own": 0.871,
+    "auroc_en_dir": 0.831,
+    "cos_to_en": 0.5191
    },
    "yo": {
-    "auroc_own": 0.8275,
-    "auroc_en_dir": 0.745,
-    "cos_to_en": 0.3646
+    "auroc_own": 0.8037,
+    "auroc_en_dir": 0.7383,
+    "cos_to_en": 0.3986
    },
    "ha": {
-    "auroc_own": 0.8375,
-    "auroc_en_dir": 0.765,
-    "cos_to_en": 0.5063
+    "auroc_own": 0.7775,
+    "auroc_en_dir": 0.7309,
+    "cos_to_en": 0.521
    },
    "ig": {
-    "auroc_own": 0.81,
-    "auroc_en_dir": 0.8725,
-    "cos_to_en": 0.399
+    "auroc_own": 0.8358,
+    "auroc_en_dir": 0.713,
+    "cos_to_en": 0.4721
    }
   },
   "4": {
    "en": {
-    "auroc_own": 0.8625,
-    "auroc_en_dir": 0.8625,
+    "auroc_own": 0.9042,
+    "auroc_en_dir": 0.9042,
     "cos_to_en": 1.0
    },
    "sw": {
-    "auroc_own": 0.8675,
-    "auroc_en_dir": 0.85,
-    "cos_to_en": 0.5988
+    "auroc_own": 0.8817,
+    "auroc_en_dir": 0.8683,
+    "cos_to_en": 0.5942
    },
    "yo": {
-    "auroc_own": 0.845,
-    "auroc_en_dir": 0.7575,
-    "cos_to_en": 0.4292
+    "auroc_own": 0.8132,
+    "auroc_en_dir": 0.7708,
+    "cos_to_en": 0.4596
    },
    "ha": {
-    "auroc_own": 0.8375,
-    "auroc_en_dir": 0.76,
-    "cos_to_en": 0.5659
+    "auroc_own": 0.809,
+    "auroc_en_dir": 0.7607,
+    "cos_to_en": 0.5616
    },
    "ig": {
-    "auroc_own": 0.7975,
-    "auroc_en_dir": 0.865,
-    "cos_to_en": 0.4459
+    "auroc_own": 0.8499,
+    "auroc_en_dir": 0.7116,
+    "cos_to_en": 0.5073
    }
   },
   "5": {
    "en": {
-    "auroc_own": 0.8525,
-    "auroc_en_dir": 0.8525,
+    "auroc_own": 0.8953,
+    "auroc_en_dir": 0.8953,
     "cos_to_en": 1.0
    },
    "sw": {
-    "auroc_own": 0.8275,
-    "auroc_en_dir": 0.7925,
-    "cos_to_en": 0.6109
+    "auroc_own": 0.8709,
+    "auroc_en_dir": 0.8443,
+    "cos_to_en": 0.604
    },
    "yo": {
-    "auroc_own": 0.8025,
-    "auroc_en_dir": 0.7525,
-    "cos_to_en": 0.4404
+    "auroc_own": 0.7835,
+    "auroc_en_dir": 0.777,
+    "cos_to_en": 0.4709
    },
    "ha": {
-    "auroc_own": 0.815,
-    "auroc_en_dir": 0.78,
-    "cos_to_en": 0.5925
+    "auroc_own": 0.7944,
+    "auroc_en_dir": 0.7536,
+    "cos_to_en": 0.552
    },
    "ig": {
-    "auroc_own": 0.795,
-    "auroc_en_dir": 0.835,
-    "cos_to_en": 0.4788
+    "auroc_own": 0.8476,
+    "auroc_en_dir": 0.7189,
+    "cos_to_en": 0.5101
    }
   },
   "6": {
    "en": {
-    "auroc_own": 0.84,
-    "auroc_en_dir": 0.84,
+    "auroc_own": 0.9027,
+    "auroc_en_dir": 0.9027,
     "cos_to_en": 1.0
    },
    "sw": {
-    "auroc_own": 0.8825,
-    "auroc_en_dir": 0.83,
-    "cos_to_en": 0.7388
+    "auroc_own": 0.8912,
+    "auroc_en_dir": 0.8812,
+    "cos_to_en": 0.7509
    },
    "yo": {
-    "auroc_own": 0.7775,
-    "auroc_en_dir": 0.7525,
-    "cos_to_en": 0.5723
+    "auroc_own": 0.8305,
+    "auroc_en_dir": 0.835,
+    "cos_to_en": 0.659
    },
    "ha": {
-    "auroc_own": 0.84,
-    "auroc_en_dir": 0.8,
-    "cos_to_en": 0.7118
+    "auroc_own": 0.8721,
+    "auroc_en_dir": 0.8308,
+    "cos_to_en": 0.7202
    },
    "ig": {
-    "auroc_own": 0.83,
-    "auroc_en_dir": 0.8,
-    "cos_to_en": 0.6258
+    "auroc_own": 0.8271,
+    "auroc_en_dir": 0.7577,
+    "cos_to_en": 0.6735
    }
   },
   "7": {
    "en": {
-    "auroc_own": 0.8425,
-    "auroc_en_dir": 0.8425,
+    "auroc_own": 0.8973,
+    "auroc_en_dir": 0.8973,
     "cos_to_en": 1.0
    },
    "sw": {
-    "auroc_own": 0.8475,
-    "auroc_en_dir": 0.825,
-    "cos_to_en": 0.7559
+    "auroc_own": 0.8785,
+    "auroc_en_dir": 0.8657,
+    "cos_to_en": 0.7759
    },
    "yo": {
-    "auroc_own": 0.77,
-    "auroc_en_dir": 0.765,
-    "cos_to_en": 0.5577
+    "auroc_own": 0.8134,
+    "auroc_en_dir": 0.8237,
+    "cos_to_en": 0.6692
    },
    "ha": {
-    "auroc_own": 0.8375,
-    "auroc_en_dir": 0.82,
-    "cos_to_en": 0.6988
+    "auroc_own": 0.8624,
+    "auroc_en_dir": 0.8293,
+    "cos_to_en": 0.7134
    },
    "ig": {
-    "auroc_own": 0.77,
-    "auroc_en_dir": 0.78,
-    "cos_to_en": 0.6361
+    "auroc_own": 0.7865,
+    "auroc_en_dir": 0.7379,
+    "cos_to_en": 0.7038
    }
   },
   "8": {
    "en": {
-    "auroc_own": 0.88,
-    "auroc_en_dir": 0.88,
+    "auroc_own": 0.9078,
+    "auroc_en_dir": 0.9078,
     "cos_to_en": 1.0
    },
    "sw": {
-    "auroc_own": 0.87,
-    "auroc_en_dir": 0.86,
-    "cos_to_en": 0.7733
+    "auroc_own": 0.8758,
+    "auroc_en_dir": 0.8639,
+    "cos_to_en": 0.7924
    },
    "yo": {
-    "auroc_own": 0.795,
-    "auroc_en_dir": 0.765,
-    "cos_to_en": 0.5781
+    "auroc_own": 0.8248,
+    "auroc_en_dir": 0.8285,
+    "cos_to_en": 0.6764
    },
    "ha": {
-    "auroc_own": 0.8625,
-    "auroc_en_dir": 0.835,
-    "cos_to_en": 0.7032
+    "auroc_own": 0.8753,
+    "auroc_en_dir": 0.846,
+    "cos_to_en": 0.7384
    },
    "ig": {
-    "auroc_own": 0.8025,
-    "auroc_en_dir": 0.7825,
-    "cos_to_en": 0.6947
+    "auroc_own": 0.8076,
+    "auroc_en_dir": 0.7725,
+    "cos_to_en": 0.7318
    }
   },
   "9": {
    "en": {
-    "auroc_own": 0.865,
-    "auroc_en_dir": 0.865,
+    "auroc_own": 0.9028,
+    "auroc_en_dir": 0.9028,
     "cos_to_en": 1.0
    },
    "sw": {
-    "auroc_own": 0.85,
-    "auroc_en_dir": 0.8325,
-    "cos_to_en": 0.7672
+    "auroc_own": 0.8754,
+    "auroc_en_dir": 0.8585,
+    "cos_to_en": 0.7871
    },
    "yo": {
-    "auroc_own": 0.775,
-    "auroc_en_dir": 0.7625,
-    "cos_to_en": 0.5813
+    "auroc_own": 0.829,
+    "auroc_en_dir": 0.8393,
+    "cos_to_en": 0.6662
    },
    "ha": {
-    "auroc_own": 0.8275,
-    "auroc_en_dir": 0.82,
-    "cos_to_en": 0.6895
+    "auroc_own": 0.8646,
+    "auroc_en_dir": 0.8355,
+    "cos_to_en": 0.724
    },
    "ig": {
-    "auroc_own": 0.8075,
-    "auroc_en_dir": 0.8125,
-    "cos_to_en": 0.7009
+    "auroc_own": 0.8106,
+    "auroc_en_dir": 0.7797,
+    "cos_to_en": 0.7393
    }
   },
   "10": {
    "en": {
-    "auroc_own": 0.9075,
-    "auroc_en_dir": 0.9075,
+    "auroc_own": 0.9242,
+    "auroc_en_dir": 0.9242,
     "cos_to_en": 1.0
    },
    "sw": {
-    "auroc_own": 0.8625,
-    "auroc_en_dir": 0.8575,
-    "cos_to_en": 0.8088
+    "auroc_own": 0.8798,
+    "auroc_en_dir": 0.872,
+    "cos_to_en": 0.8366
    },
    "yo": {
-    "auroc_own": 0.8025,
-    "auroc_en_dir": 0.8175,
-    "cos_to_en": 0.6695
+    "auroc_own": 0.8385,
+    "auroc_en_dir": 0.8512,
+    "cos_to_en": 0.7345
    },
    "ha": {
-    "auroc_own": 0.8625,
-    "auroc_en_dir": 0.8925,
-    "cos_to_en": 0.7324
+    "auroc_own": 0.8841,
+    "auroc_en_dir": 0.8672,
+    "cos_to_en": 0.7889
    },
    "ig": {
-    "auroc_own": 0.82,
-    "auroc_en_dir": 0.8125,
-    "cos_to_en": 0.7468
+    "auroc_own": 0.8419,
+    "auroc_en_dir": 0.8324,
+    "cos_to_en": 0.7857
    }
   },
   "11": {
    "en": {
-    "auroc_own": 0.9425,
-    "auroc_en_dir": 0.9425,
+    "auroc_own": 0.9568,
+    "auroc_en_dir": 0.9568,
     "cos_to_en": 1.0
    },
    "sw": {
-    "auroc_own": 0.8825,
-    "auroc_en_dir": 0.875,
-    "cos_to_en": 0.8293
+    "auroc_own": 0.8964,
+    "auroc_en_dir": 0.9006,
+    "cos_to_en": 0.8544
    },
    "yo": {
-    "auroc_own": 0.8075,
-    "auroc_en_dir": 0.815,
-    "cos_to_en": 0.6729
+    "auroc_own": 0.8433,
+    "auroc_en_dir": 0.8667,
+    "cos_to_en": 0.7474
    },
    "ha": {
-    "auroc_own": 0.9025,
-    "auroc_en_dir": 0.9175,
-    "cos_to_en": 0.7458
+    "auroc_own": 0.8904,
+    "auroc_en_dir": 0.8966,
+    "cos_to_en": 0.8057
    },
    "ig": {
-    "auroc_own": 0.845,
-    "auroc_en_dir": 0.8275,
-    "cos_to_en": 0.7826
+    "auroc_own": 0.8644,
+    "auroc_en_dir": 0.8722,
+    "cos_to_en": 0.8199
    }
   },
   "12": {
    "en": {
-    "auroc_own": 0.9825,
-    "auroc_en_dir": 0.9825,
+    "auroc_own": 0.9747,
+    "auroc_en_dir": 0.9747,
     "cos_to_en": 1.0
    },
    "sw": {
-    "auroc_own": 0.925,
-    "auroc_en_dir": 0.9225,
-    "cos_to_en": 0.8735
+    "auroc_own": 0.9388,
+    "auroc_en_dir": 0.942,
+    "cos_to_en": 0.8988
    },
    "yo": {
-    "auroc_own": 0.855,
-    "auroc_en_dir": 0.8625,
-    "cos_to_en": 0.7069
+    "auroc_own": 0.8994,
+    "auroc_en_dir": 0.9124,
+    "cos_to_en": 0.7943
    },
    "ha": {
-    "auroc_own": 0.895,
-    "auroc_en_dir": 0.915,
-    "cos_to_en": 0.813
+    "auroc_own": 0.932,
+    "auroc_en_dir": 0.9317,
+    "cos_to_en": 0.8654
    },
    "ig": {
-    "auroc_own": 0.855,
-    "auroc_en_dir": 0.8475,
-    "cos_to_en": 0.8325
+    "auroc_own": 0.9012,
+    "auroc_en_dir": 0.9047,
+    "cos_to_en": 0.8675
    }
   },
   "13": {
    "en": {
-    "auroc_own": 0.99,
-    "auroc_en_dir": 0.99,
+    "auroc_own": 0.9735,
+    "auroc_en_dir": 0.9735,
     "cos_to_en": 1.0
    },
    "sw": {
-    "auroc_own": 0.92,
-    "auroc_en_dir": 0.935,
-    "cos_to_en": 0.8396
+    "auroc_own": 0.9322,
+    "auroc_en_dir": 0.9384,
+    "cos_to_en": 0.8725
    },
    "yo": {
-    "auroc_own": 0.8425,
-    "auroc_en_dir": 0.8575,
-    "cos_to_en": 0.7245
+    "auroc_own": 0.8967,
+    "auroc_en_dir": 0.9108,
+    "cos_to_en": 0.797
    },
    "ha": {
-    "auroc_own": 0.85,
-    "auroc_en_dir": 0.905,
-    "cos_to_en": 0.7997
+    "auroc_own": 0.93,
+    "auroc_en_dir": 0.9313,
+    "cos_to_en": 0.8561
    },
    "ig": {
-    "auroc_own": 0.8,
-    "auroc_en_dir": 0.8575,
-    "cos_to_en": 0.8092
+    "auroc_own": 0.8924,
+    "auroc_en_dir": 0.9034,
+    "cos_to_en": 0.8542
    }
   },
   "14": {
    "en": {
-    "auroc_own": 1.0,
-    "auroc_en_dir": 1.0,
+    "auroc_own": 0.9787,
+    "auroc_en_dir": 0.9787,
     "cos_to_en": 1.0
    },
    "sw": {
-    "auroc_own": 0.915,
-    "auroc_en_dir": 0.9275,
-    "cos_to_en": 0.8327
+    "auroc_own": 0.9311,
+    "auroc_en_dir": 0.9469,
+    "cos_to_en": 0.8581
    },
    "yo": {
-    "auroc_own": 0.8675,
-    "auroc_en_dir": 0.8975,
-    "cos_to_en": 0.7326
+    "auroc_own": 0.8988,
+    "auroc_en_dir": 0.9256,
+    "cos_to_en": 0.7931
    },
    "ha": {
-    "auroc_own": 0.88,
-    "auroc_en_dir": 0.935,
-    "cos_to_en": 0.815
+    "auroc_own": 0.9341,
+    "auroc_en_dir": 0.9461,
+    "cos_to_en": 0.8565
    },
    "ig": {
-    "auroc_own": 0.7875,
-    "auroc_en_dir": 0.875,
-    "cos_to_en": 0.7914
+    "auroc_own": 0.8915,
+    "auroc_en_dir": 0.9153,
+    "cos_to_en": 0.8337
    }
   },
   "15": {
    "en": {
-    "auroc_own": 1.0,
-    "auroc_en_dir": 1.0,
+    "auroc_own": 0.9808,
+    "auroc_en_dir": 0.9808,
     "cos_to_en": 1.0
    },
    "sw": {
-    "auroc_own": 0.9275,
-    "auroc_en_dir": 0.9375,
-    "cos_to_en": 0.84
+    "auroc_own": 0.941,
+    "auroc_en_dir": 0.9464,
+    "cos_to_en": 0.868
    },
    "yo": {
-    "auroc_own": 0.895,
-    "auroc_en_dir": 0.885,
-    "cos_to_en": 0.7654
+    "auroc_own": 0.9091,
+    "auroc_en_dir": 0.9314,
+    "cos_to_en": 0.8048
    },
    "ha": {
-    "auroc_own": 0.9075,
-    "auroc_en_dir": 0.9425,
-    "cos_to_en": 0.8184
+    "auroc_own": 0.942,
+    "auroc_en_dir": 0.9554,
+    "cos_to_en": 0.8653
    },
    "ig": {
-    "auroc_own": 0.83,
-    "auroc_en_dir": 0.875,
-    "cos_to_en": 0.7824
+    "auroc_own": 0.9036,
+    "auroc_en_dir": 0.9232,
+    "cos_to_en": 0.8211
    }
   },
   "16": {
    "en": {
-    "auroc_own": 1.0,
-    "auroc_en_dir": 1.0,
+    "auroc_own": 0.9844,
+    "auroc_en_dir": 0.9844,
     "cos_to_en": 1.0
    },
    "sw": {
-    "auroc_own": 0.93,
-    "auroc_en_dir": 0.9475,
-    "cos_to_en": 0.8289
+    "auroc_own": 0.9353,
+    "auroc_en_dir": 0.9469,
+    "cos_to_en": 0.8596
    },
    "yo": {
-    "auroc_own": 0.8725,
-    "auroc_en_dir": 0.8975,
-    "cos_to_en": 0.726
+    "auroc_own": 0.8968,
+    "auroc_en_dir": 0.9307,
+    "cos_to_en": 0.7679
    },
    "ha": {
-    "auroc_own": 0.8975,
-    "auroc_en_dir": 0.9425,
-    "cos_to_en": 0.778
+    "auroc_own": 0.9282,
+    "auroc_en_dir": 0.9554,
+    "cos_to_en": 0.8336
    },
    "ig": {
-    "auroc_own": 0.8,
-    "auroc_en_dir": 0.875,
-    "cos_to_en": 0.7452
+    "auroc_own": 0.8935,
+    "auroc_en_dir": 0.9265,
+    "cos_to_en": 0.8022
    }
   },
   "17": {
    "en": {
-    "auroc_own": 1.0,
-    "auroc_en_dir": 1.0,
+    "auroc_own": 0.9859,
+    "auroc_en_dir": 0.9859,
     "cos_to_en": 1.0
    },
    "sw": {
-    "auroc_own": 0.9375,
-    "auroc_en_dir": 0.9525,
-    "cos_to_en": 0.847
+    "auroc_own": 0.938,
+    "auroc_en_dir": 0.9512,
+    "cos_to_en": 0.8672
    },
    "yo": {
-    "auroc_own": 0.8525,
-    "auroc_en_dir": 0.8925,
-    "cos_to_en": 0.7123
+    "auroc_own": 0.8887,
+    "auroc_en_dir": 0.934,
+    "cos_to_en": 0.7461
    },
    "ha": {
-    "auroc_own": 0.9125,
-    "auroc_en_dir": 0.955,
-    "cos_to_en": 0.7633
+    "auroc_own": 0.9276,
+    "auroc_en_dir": 0.9597,
+    "cos_to_en": 0.8213
    },
    "ig": {
-    "auroc_own": 0.825,
-    "auroc_en_dir": 0.8825,
-    "cos_to_en": 0.7452
+    "auroc_own": 0.9072,
+    "auroc_en_dir": 0.9329,
+    "cos_to_en": 0.8065
    }
   },
   "18": {
    "en": {
-    "auroc_own": 0.9975,
-    "auroc_en_dir": 0.9975,
+    "auroc_own": 0.9831,
+    "auroc_en_dir": 0.9831,
     "cos_to_en": 1.0
    },
    "sw": {
-    "auroc_own": 0.9525,
-    "auroc_en_dir": 0.9525,
-    "cos_to_en": 0.8507
+    "auroc_own": 0.9403,
+    "auroc_en_dir": 0.9496,
+    "cos_to_en": 0.8621
    },
    "yo": {
-    "auroc_own": 0.8725,
-    "auroc_en_dir": 0.87,
-    "cos_to_en": 0.6872
+    "auroc_own": 0.8957,
+    "auroc_en_dir": 0.934,
+    "cos_to_en": 0.7066
    },
    "ha": {
-    "auroc_own": 0.935,
-    "auroc_en_dir": 0.96,
-    "cos_to_en": 0.7596
+    "auroc_own": 0.9307,
+    "auroc_en_dir": 0.9609,
+    "cos_to_en": 0.8059
    },
    "ig": {
-    "auroc_own": 0.8625,
-    "auroc_en_dir": 0.875,
-    "cos_to_en": 0.7355
+    "auroc_own": 0.9156,
+    "auroc_en_dir": 0.9321,
+    "cos_to_en": 0.7911
    }
   },
   "19": {
    "en": {
-    "auroc_own": 0.99,
-    "auroc_en_dir": 0.99,
+    "auroc_own": 0.98,
+    "auroc_en_dir": 0.98,
     "cos_to_en": 1.0
    },
    "sw": {
-    "auroc_own": 0.955,
-    "auroc_en_dir": 0.9425,
-    "cos_to_en": 0.8626
+    "auroc_own": 0.9453,
+    "auroc_en_dir": 0.9454,
+    "cos_to_en": 0.8644
    },
    "yo": {
-    "auroc_own": 0.9025,
-    "auroc_en_dir": 0.8525,
-    "cos_to_en": 0.7048
+    "auroc_own": 0.9064,
+    "auroc_en_dir": 0.9265,
+    "cos_to_en": 0.7047
    },
    "ha": {
-    "auroc_own": 0.9475,
-    "auroc_en_dir": 0.96,
-    "cos_to_en": 0.7824
+    "auroc_own": 0.9452,
+    "auroc_en_dir": 0.956,
+    "cos_to_en": 0.8178
    },
    "ig": {
-    "auroc_own": 0.9,
-    "auroc_en_dir": 0.885,
-    "cos_to_en": 0.7548
+    "auroc_own": 0.927,
+    "auroc_en_dir": 0.9299,
+    "cos_to_en": 0.8
    }
   },
   "20": {
    "en": {
-    "auroc_own": 0.9875,
-    "auroc_en_dir": 0.9875,
+    "auroc_own": 0.9801,
+    "auroc_en_dir": 0.9801,
     "cos_to_en": 1.0
    },
    "sw": {
-    "auroc_own": 0.9475,
-    "auroc_en_dir": 0.9325,
-    "cos_to_en": 0.8514
+    "auroc_own": 0.9472,
+    "auroc_en_dir": 0.9417,
+    "cos_to_en": 0.853
    },
    "yo": {
-    "auroc_own": 0.91,
-    "auroc_en_dir": 0.83,
-    "cos_to_en": 0.6992
+    "auroc_own": 0.9172,
+    "auroc_en_dir": 0.9235,
+    "cos_to_en": 0.697
    },
    "ha": {
-    "auroc_own": 0.95,
-    "auroc_en_dir": 0.965,
-    "cos_to_en": 0.7748
+    "auroc_own": 0.9522,
+    "auroc_en_dir": 0.9569,
+    "cos_to_en": 0.8102
    },
    "ig": {
-    "auroc_own": 0.905,
-    "auroc_en_dir": 0.8775,
-    "cos_to_en": 0.7441
+    "auroc_own": 0.9331,
+    "auroc_en_dir": 0.9266,
+    "cos_to_en": 0.7957
    }
   },
   "21": {
    "en": {
-    "auroc_own": 0.99,
-    "auroc_en_dir": 0.99,
+    "auroc_own": 0.9805,
+    "auroc_en_dir": 0.9805,
     "cos_to_en": 1.0
    },
    "sw": {
-    "auroc_own": 0.945,
-    "auroc_en_dir": 0.9225,
-    "cos_to_en": 0.8378
+    "auroc_own": 0.9491,
+    "auroc_en_dir": 0.9374,
+    "cos_to_en": 0.8346
    },
    "yo": {
-    "auroc_own": 0.9075,
-    "auroc_en_dir": 0.835,
-    "cos_to_en": 0.6691
+    "auroc_own": 0.9172,
+    "auroc_en_dir": 0.9188,
+    "cos_to_en": 0.6735
    },
    "ha": {
-    "auroc_own": 0.95,
-    "auroc_en_dir": 0.965,
-    "cos_to_en": 0.7444
+    "auroc_own": 0.9528,
+    "auroc_en_dir": 0.9545,
+    "cos_to_en": 0.7852
    },
    "ig": {
-    "auroc_own": 0.8925,
-    "auroc_en_dir": 0.8775,
-    "cos_to_en": 0.7158
+    "auroc_own": 0.9326,
+    "auroc_en_dir": 0.9215,
+    "cos_to_en": 0.7724
    }
   },
   "22": {
    "en": {
-    "auroc_own": 0.99,
-    "auroc_en_dir": 0.99,
+    "auroc_own": 0.9823,
+    "auroc_en_dir": 0.9823,
     "cos_to_en": 1.0
    },
    "sw": {
-    "auroc_own": 0.9475,
-    "auroc_en_dir": 0.925,
-    "cos_to_en": 0.8249
+    "auroc_own": 0.9487,
+    "auroc_en_dir": 0.9326,
+    "cos_to_en": 0.8175
    },
    "yo": {
-    "auroc_own": 0.905,
-    "auroc_en_dir": 0.8375,
-    "cos_to_en": 0.6539
+    "auroc_own": 0.9181,
+    "auroc_en_dir": 0.9151,
+    "cos_to_en": 0.6635
    },
    "ha": {
-    "auroc_own": 0.9525,
-    "auroc_en_dir": 0.975,
-    "cos_to_en": 0.7373
+    "auroc_own": 0.9571,
+    "auroc_en_dir": 0.9543,
+    "cos_to_en": 0.7737
    },
    "ig": {
-    "auroc_own": 0.9,
-    "auroc_en_dir": 0.885,
-    "cos_to_en": 0.7035
+    "auroc_own": 0.9328,
+    "auroc_en_dir": 0.9194,
+    "cos_to_en": 0.7572
    }
   },
   "23": {
    "en": {
-    "auroc_own": 0.9825,
-    "auroc_en_dir": 0.9825,
+    "auroc_own": 0.9784,
+    "auroc_en_dir": 0.9784,
     "cos_to_en": 1.0
    },
    "sw": {
-    "auroc_own": 0.9425,
-    "auroc_en_dir": 0.9075,
-    "cos_to_en": 0.8402
+    "auroc_own": 0.9423,
+    "auroc_en_dir": 0.9195,
+    "cos_to_en": 0.8326
    },
    "yo": {
-    "auroc_own": 0.9075,
-    "auroc_en_dir": 0.815,
-    "cos_to_en": 0.6844
+    "auroc_own": 0.92,
+    "auroc_en_dir": 0.8876,
+    "cos_to_en": 0.6926
    },
    "ha": {
-    "auroc_own": 0.955,
-    "auroc_en_dir": 0.9725,
-    "cos_to_en": 0.7714
+    "auroc_own": 0.9623,
+    "auroc_en_dir": 0.9422,
+    "cos_to_en": 0.8028
    },
    "ig": {
-    "auroc_own": 0.8975,
-    "auroc_en_dir": 0.8575,
-    "cos_to_en": 0.7454
+    "auroc_own": 0.9319,
+    "auroc_en_dir": 0.8999,
+    "cos_to_en": 0.7855
    }
   },
   "24": {
    "en": {
-    "auroc_own": 0.9875,
-    "auroc_en_dir": 0.9875,
+    "auroc_own": 0.9774,
+    "auroc_en_dir": 0.9774,
     "cos_to_en": 1.0
    },
    "sw": {
-    "auroc_own": 0.9375,
-    "auroc_en_dir": 0.895,
-    "cos_to_en": 0.8168
+    "auroc_own": 0.9382,
+    "auroc_en_dir": 0.912,
+    "cos_to_en": 0.8067
    },
    "yo": {
-    "auroc_own": 0.9025,
-    "auroc_en_dir": 0.81,
-    "cos_to_en": 0.6733
+    "auroc_own": 0.9172,
+    "auroc_en_dir": 0.8759,
+    "cos_to_en": 0.6752
    },
    "ha": {
-    "auroc_own": 0.965,
-    "auroc_en_dir": 0.9675,
-    "cos_to_en": 0.7561
+    "auroc_own": 0.9597,
+    "auroc_en_dir": 0.935,
+    "cos_to_en": 0.7766
    },
    "ig": {
-    "auroc_own": 0.8925,
-    "auroc_en_dir": 0.8425,
-    "cos_to_en": 0.7269
+    "auroc_own": 0.9297,
+    "auroc_en_dir": 0.8918,
+    "cos_to_en": 0.7596
    }
   },
   "25": {
    "en": {
-    "auroc_own": 0.9875,
-    "auroc_en_dir": 0.9875,
+    "auroc_own": 0.9785,
+    "auroc_en_dir": 0.9785,
     "cos_to_en": 1.0
    },
    "sw": {
-    "auroc_own": 0.935,
-    "auroc_en_dir": 0.89,
-    "cos_to_en": 0.7766
+    "auroc_own": 0.9387,
+    "auroc_en_dir": 0.9099,
+    "cos_to_en": 0.7592
    },
    "yo": {
-    "auroc_own": 0.9,
-    "auroc_en_dir": 0.8075,
-    "cos_to_en": 0.6305
+    "auroc_own": 0.9183,
+    "auroc_en_dir": 0.878,
+    "cos_to_en": 0.6397
    },
    "ha": {
-    "auroc_own": 0.965,
-    "auroc_en_dir": 0.965,
-    "cos_to_en": 0.7041
+    "auroc_own": 0.959,
+    "auroc_en_dir": 0.9316,
+    "cos_to_en": 0.7321
    },
    "ig": {
-    "auroc_own": 0.9,
-    "auroc_en_dir": 0.8325,
-    "cos_to_en": 0.6822
+    "auroc_own": 0.9316,
+    "auroc_en_dir": 0.8888,
+    "cos_to_en": 0.7193
    }
   },
   "26": {
    "en": {
-    "auroc_own": 0.9875,
-    "auroc_en_dir": 0.9875,
+    "auroc_own": 0.9778,
+    "auroc_en_dir": 0.9778,
     "cos_to_en": 1.0
    },
    "sw": {
     "auroc_own": 0.935,
-    "auroc_en_dir": 0.8975,
-    "cos_to_en": 0.7568
+    "auroc_en_dir": 0.9084,
+    "cos_to_en": 0.7457
    },
    "yo": {
-    "auroc_own": 0.885,
-    "auroc_en_dir": 0.78,
-    "cos_to_en": 0.6182
+    "auroc_own": 0.9188,
+    "auroc_en_dir": 0.8697,
+    "cos_to_en": 0.6348
    },
    "ha": {
-    "auroc_own": 0.965,
-    "auroc_en_dir": 0.965,
-    "cos_to_en": 0.6922
+    "auroc_own": 0.9553,
+    "auroc_en_dir": 0.9302,
+    "cos_to_en": 0.7196
    },
    "ig": {
-    "auroc_own": 0.9,
-    "auroc_en_dir": 0.83,
-    "cos_to_en": 0.6791
+    "auroc_own": 0.9267,
+    "auroc_en_dir": 0.8881,
+    "cos_to_en": 0.7157
    }
   },
   "27": {
    "en": {
-    "auroc_own": 0.9875,
-    "auroc_en_dir": 0.9875,
+    "auroc_own": 0.9792,
+    "auroc_en_dir": 0.9792,
     "cos_to_en": 1.0
    },
    "sw": {
-    "auroc_own": 0.9325,
-    "auroc_en_dir": 0.9,
-    "cos_to_en": 0.7547
+    "auroc_own": 0.9285,
+    "auroc_en_dir": 0.9078,
+    "cos_to_en": 0.7429
    },
    "yo": {
-    "auroc_own": 0.8775,
-    "auroc_en_dir": 0.79,
-    "cos_to_en": 0.5972
+    "auroc_own": 0.9125,
+    "auroc_en_dir": 0.8723,
+    "cos_to_en": 0.6214
    },
    "ha": {
-    "auroc_own": 0.96,
-    "auroc_en_dir": 0.9625,
-    "cos_to_en": 0.6889
+    "auroc_own": 0.9496,
+    "auroc_en_dir": 0.9298,
+    "cos_to_en": 0.7158
    },
    "ig": {
-    "auroc_own": 0.88,
-    "auroc_en_dir": 0.835,
-    "cos_to_en": 0.677
+    "auroc_own": 0.9181,
+    "auroc_en_dir": 0.8873,
+    "cos_to_en": 0.707
    }
   },
   "28": {
    "en": {
-    "auroc_own": 0.98,
-    "auroc_en_dir": 0.98,
+    "auroc_own": 0.9776,
+    "auroc_en_dir": 0.9776,
     "cos_to_en": 1.0
    },
    "sw": {
-    "auroc_own": 0.9325,
-    "auroc_en_dir": 0.91,
-    "cos_to_en": 0.7409
+    "auroc_own": 0.9151,
+    "auroc_en_dir": 0.9046,
+    "cos_to_en": 0.7317
    },
    "yo": {
-    "auroc_own": 0.8575,
-    "auroc_en_dir": 0.7875,
-    "cos_to_en": 0.6071
+    "auroc_own": 0.9061,
+    "auroc_en_dir": 0.8672,
+    "cos_to_en": 0.64
    },
    "ha": {
-    "auroc_own": 0.95,
-    "auroc_en_dir": 0.9575,
-    "cos_to_en": 0.6999
+    "auroc_own": 0.9346,
+    "auroc_en_dir": 0.9252,
+    "cos_to_en": 0.7199
    },
    "ig": {
-    "auroc_own": 0.8625,
-    "auroc_en_dir": 0.845,
-    "cos_to_en": 0.6722
+    "auroc_own": 0.9028,
+    "auroc_en_dir": 0.8826,
+    "cos_to_en": 0.7018
    }
   },
   "29": {
    "en": {
-    "auroc_own": 0.98,
-    "auroc_en_dir": 0.98,
+    "auroc_own": 0.9765,
+    "auroc_en_dir": 0.9765,
     "cos_to_en": 1.0
    },
    "sw": {
-    "auroc_own": 0.915,
-    "auroc_en_dir": 0.8925,
-    "cos_to_en": 0.69
+    "auroc_own": 0.9078,
+    "auroc_en_dir": 0.8976,
+    "cos_to_en": 0.6898
    },
    "yo": {
-    "auroc_own": 0.825,
-    "auroc_en_dir": 0.7725,
-    "cos_to_en": 0.5611
+    "auroc_own": 0.8968,
+    "auroc_en_dir": 0.8589,
+    "cos_to_en": 0.6083
    },
    "ha": {
-    "auroc_own": 0.945,
-    "auroc_en_dir": 0.945,
-    "cos_to_en": 0.6537
+    "auroc_own": 0.9301,
+    "auroc_en_dir": 0.9205,
+    "cos_to_en": 0.6772
    },
    "ig": {
-    "auroc_own": 0.8525,
-    "auroc_en_dir": 0.835,
-    "cos_to_en": 0.6328
+    "auroc_own": 0.8978,
+    "auroc_en_dir": 0.876,
+    "cos_to_en": 0.6593
    }
   },
   "30": {
    "en": {
-    "auroc_own": 0.98,
-    "auroc_en_dir": 0.98,
+    "auroc_own": 0.9778,
+    "auroc_en_dir": 0.9778,
     "cos_to_en": 1.0
    },
    "sw": {
-    "auroc_own": 0.9025,
-    "auroc_en_dir": 0.89,
-    "cos_to_en": 0.6022
+    "auroc_own": 0.9055,
+    "auroc_en_dir": 0.9019,
+    "cos_to_en": 0.6108
    },
    "yo": {
-    "auroc_own": 0.8125,
-    "auroc_en_dir": 0.755,
-    "cos_to_en": 0.5054
+    "auroc_own": 0.8892,
+    "auroc_en_dir": 0.8589,
+    "cos_to_en": 0.5566
    },
    "ha": {
-    "auroc_own": 0.935,
-    "auroc_en_dir": 0.9425,
-    "cos_to_en": 0.5759
+    "auroc_own": 0.9286,
+    "auroc_en_dir": 0.9221,
+    "cos_to_en": 0.6005
    },
    "ig": {
-    "auroc_own": 0.86,
-    "auroc_en_dir": 0.8325,
-    "cos_to_en": 0.5816
+    "auroc_own": 0.8936,
+    "auroc_en_dir": 0.8755,
+    "cos_to_en": 0.6059
    }
   },
   "31": {
    "en": {
-    "auroc_own": 0.9825,
-    "auroc_en_dir": 0.9825,
+    "auroc_own": 0.9772,
+    "auroc_en_dir": 0.9772,
     "cos_to_en": 1.0
    },
    "sw": {
-    "auroc_own": 0.8975,
-    "auroc_en_dir": 0.8825,
-    "cos_to_en": 0.5378
+    "auroc_own": 0.9024,
+    "auroc_en_dir": 0.8991,
+    "cos_to_en": 0.5545
    },
    "yo": {
-    "auroc_own": 0.8025,
-    "auroc_en_dir": 0.76,
-    "cos_to_en": 0.4482
+    "auroc_own": 0.8824,
+    "auroc_en_dir": 0.8594,
+    "cos_to_en": 0.502
    },
    "ha": {
-    "auroc_own": 0.935,
-    "auroc_en_dir": 0.945,
-    "cos_to_en": 0.4965
+    "auroc_own": 0.9263,
+    "auroc_en_dir": 0.921,
+    "cos_to_en": 0.5305
    },
    "ig": {
-    "auroc_own": 0.86,
-    "auroc_en_dir": 0.8225,
-    "cos_to_en": 0.5089
+    "auroc_own": 0.8878,
+    "auroc_en_dir": 0.874,
+    "cos_to_en": 0.5371
    }
   },
   "32": {
    "en": {
-    "auroc_own": 0.9825,
-    "auroc_en_dir": 0.9825,
+    "auroc_own": 0.9777,
+    "auroc_en_dir": 0.9777,
     "cos_to_en": 1.0
    },
    "sw": {
-    "auroc_own": 0.88,
-    "auroc_en_dir": 0.87,
-    "cos_to_en": 0.454
+    "auroc_own": 0.897,
+    "auroc_en_dir": 0.8964,
+    "cos_to_en": 0.4834
    },
    "yo": {
-    "auroc_own": 0.8,
-    "auroc_en_dir": 0.7525,
-    "cos_to_en": 0.4045
+    "auroc_own": 0.8734,
+    "auroc_en_dir": 0.8482,
+    "cos_to_en": 0.4449
    },
    "ha": {
-    "auroc_own": 0.9325,
-    "auroc_en_dir": 0.9525,
-    "cos_to_en": 0.426
+    "auroc_own": 0.9232,
+    "auroc_en_dir": 0.919,
+    "cos_to_en": 0.4686
    },
    "ig": {
-    "auroc_own": 0.8575,
-    "auroc_en_dir": 0.83,
-    "cos_to_en": 0.4466
+    "auroc_own": 0.8822,
+    "auroc_en_dir": 0.8694,
+    "cos_to_en": 0.4739
    }
   },
   "33": {
    "en": {
-    "auroc_own": 0.9825,
-    "auroc_en_dir": 0.9825,
+    "auroc_own": 0.979,
+    "auroc_en_dir": 0.979,
     "cos_to_en": 1.0
    },
    "sw": {
-    "auroc_own": 0.875,
-    "auroc_en_dir": 0.87,
-    "cos_to_en": 0.3674
+    "auroc_own": 0.8979,
+    "auroc_en_dir": 0.8975,
+    "cos_to_en": 0.4119
    },
    "yo": {
-    "auroc_own": 0.7975,
-    "auroc_en_dir": 0.7625,
-    "cos_to_en": 0.3692
+    "auroc_own": 0.8717,
+    "auroc_en_dir": 0.8611,
+    "cos_to_en": 0.4105
    },
    "ha": {
-    "auroc_own": 0.9225,
-    "auroc_en_dir": 0.955,
-    "cos_to_en": 0.3731
+    "auroc_own": 0.9201,
+    "auroc_en_dir": 0.919,
+    "cos_to_en": 0.4165
    },
    "ig": {
-    "auroc_own": 0.855,
-    "auroc_en_dir": 0.84,
-    "cos_to_en": 0.3914
+    "auroc_own": 0.8832,
+    "auroc_en_dir": 0.877,
+    "cos_to_en": 0.4229
    }
   },
   "34": {
    "en": {
-    "auroc_own": 0.985,
-    "auroc_en_dir": 0.985,
+    "auroc_own": 0.9786,
+    "auroc_en_dir": 0.9786,
     "cos_to_en": 1.0
    },
    "sw": {
-    "auroc_own": 0.8875,
-    "auroc_en_dir": 0.91,
-    "cos_to_en": 0.3202
+    "auroc_own": 0.8989,
+    "auroc_en_dir": 0.906,
+    "cos_to_en": 0.3503
    },
    "yo": {
-    "auroc_own": 0.805,
-    "auroc_en_dir": 0.7925,
-    "cos_to_en": 0.3212
+    "auroc_own": 0.879,
+    "auroc_en_dir": 0.8746,
+    "cos_to_en": 0.355
    },
    "ha": {
-    "auroc_own": 0.9275,
-    "auroc_en_dir": 0.9525,
-    "cos_to_en": 0.3251
+    "auroc_own": 0.9232,
+    "auroc_en_dir": 0.9252,
+    "cos_to_en": 0.3636
    },
    "ig": {
-    "auroc_own": 0.865,
-    "auroc_en_dir": 0.855,
-    "cos_to_en": 0.3415
+    "auroc_own": 0.8904,
+    "auroc_en_dir": 0.8915,
+    "cos_to_en": 0.3676
    }
   },
   "35": {
    "en": {
-    "auroc_own": 0.9875,
-    "auroc_en_dir": 0.9875,
+    "auroc_own": 0.9799,
+    "auroc_en_dir": 0.9799,
     "cos_to_en": 1.0
    },
    "sw": {
-    "auroc_own": 0.92,
-    "auroc_en_dir": 0.9375,
-    "cos_to_en": 0.2844
+    "auroc_own": 0.9092,
+    "auroc_en_dir": 0.9092,
+    "cos_to_en": 0.3024
    },
    "yo": {
-    "auroc_own": 0.805,
-    "auroc_en_dir": 0.805,
-    "cos_to_en": 0.295
+    "auroc_own": 0.876,
+    "auroc_en_dir": 0.8698,
+    "cos_to_en": 0.3623
    },
    "ha": {
-    "auroc_own": 0.94,
-    "auroc_en_dir": 0.965,
-    "cos_to_en": 0.3023
+    "auroc_own": 0.931,
+    "auroc_en_dir": 0.9251,
+    "cos_to_en": 0.3322
    },
    "ig": {
-    "auroc_own": 0.8725,
-    "auroc_en_dir": 0.865,
-    "cos_to_en": 0.3293
+    "auroc_own": 0.8988,
+    "auroc_en_dir": 0.8997,
+    "cos_to_en": 0.3557
    }
   }
  },
  "mean_harmful_margin_best_layer": {
-  "en": 17.721,
-  "sw": 19.497,
-  "yo": 16.004,
-  "ha": 18.491,
-  "ig": 17.567
+  "en": 21.958,
+  "sw": 24.967,
+  "yo": 23.504,
+  "ha": 24.419,
+  "ig": 24.196
  },
  "quant_flip": {
   "global-q3_k_m": {
    "en": {
-    "n_refused_f16": 17,
-    "n_lost": 2,
-    "auroc_margin_kept_vs_lost": 0.5667,
-    "mean_margin_kept": 19.155,
-    "mean_margin_lost": 18.176
+    "n_refused_f16": 89,
+    "n_lost": 3,
+    "auroc_margin_kept_vs_lost": 0.4419,
+    "mean_margin_kept": 24.748,
+    "mean_margin_lost": 25.812
    },
    "sw": {
-    "n_refused_f16": 11,
-    "n_lost": 2,
-    "auroc_margin_kept_vs_lost": 0.9444,
-    "mean_margin_kept": 24.807,
-    "mean_margin_lost": 19.487
+    "n_refused_f16": 67,
+    "n_lost": 21,
+    "auroc_margin_kept_vs_lost": 0.5611,
+    "mean_margin_kept": 28.325,
+    "mean_margin_lost": 27.971
    },
    "yo": {
-    "n_refused_f16": 6,
-    "n_lost": 3,
-    "auroc_margin_kept_vs_lost": 0.6667,
-    "mean_margin_kept": 18.785,
-    "mean_margin_lost": 18.149
+    "n_refused_f16": 35,
+    "n_lost": 14,
+    "auroc_margin_kept_vs_lost": 0.4728,
+    "mean_margin_kept": 24.617,
+    "mean_margin_lost": 25.441
    },
    "ha": {
-    "n_refused_f16": 12,
-    "n_lost": 2,
-    "auroc_margin_kept_vs_lost": 0.4,
-    "mean_margin_kept": 18.967,
-    "mean_margin_lost": 21.503
+    "n_refused_f16": 61,
+    "n_lost": 11,
+    "auroc_margin_kept_vs_lost": 0.4091,
+    "mean_margin_kept": 26.392,
+    "mean_margin_lost": 27.828
    },
    "ig": {
-    "n_refused_f16": 9,
-    "n_lost": 0,
-    "auroc_margin_kept_vs_lost": null,
-    "mean_margin_kept": 19.48,
-    "mean_margin_lost": null
+    "n_refused_f16": 58,
+    "n_lost": 2,
+    "auroc_margin_kept_vs_lost": 0.6071,
+    "mean_margin_kept": 26.316,
+    "mean_margin_lost": 25.255
    }
   },
   "global-q2_k": {
    "en": {
-    "n_refused_f16": 17,
-    "n_lost": 2,
-    "auroc_margin_kept_vs_lost": 0.9333,
-    "mean_margin_kept": 19.662,
-    "mean_margin_lost": 14.373
+    "n_refused_f16": 89,
+    "n_lost": 9,
+    "auroc_margin_kept_vs_lost": 0.8708,
+    "mean_margin_kept": 25.402,
+    "mean_margin_lost": 19.287
    },
    "sw": {
-    "n_refused_f16": 11,
-    "n_lost": 7,
-    "auroc_margin_kept_vs_lost": 0.5,
-    "mean_margin_kept": 23.893,
-    "mean_margin_lost": 23.809
+    "n_refused_f16": 67,
+    "n_lost": 36,
+    "auroc_margin_kept_vs_lost": 0.3952,
+    "mean_margin_kept": 27.349,
+    "mean_margin_lost": 28.958
    },
    "yo": {
-    "n_refused_f16": 6,
-    "n_lost": 6,
-    "auroc_margin_kept_vs_lost": null,
-    "mean_margin_kept": null,
-    "mean_margin_lost": 18.467
+    "n_refused_f16": 35,
+    "n_lost": 33,
+    "auroc_margin_kept_vs_lost": 0.4697,
+    "mean_margin_kept": 22.178,
+    "mean_margin_lost": 25.115
    },
    "ha": {
-    "n_refused_f16": 12,
-    "n_lost": 9,
-    "auroc_margin_kept_vs_lost": 0.5556,
-    "mean_margin_kept": 20.204,
-    "mean_margin_lost": 19.118
+    "n_refused_f16": 61,
+    "n_lost": 39,
+    "auroc_margin_kept_vs_lost": 0.3846,
+    "mean_margin_kept": 25.534,
+    "mean_margin_lost": 27.281
    },
    "ig": {
-    "n_refused_f16": 9,
-    "n_lost": 6,
-    "auroc_margin_kept_vs_lost": 0.2778,
-    "mean_margin_kept": 18.345,
-    "mean_margin_lost": 20.047
+    "n_refused_f16": 58,
+    "n_lost": 37,
+    "auroc_margin_kept_vs_lost": 0.5586,
+    "mean_margin_kept": 26.72,
+    "mean_margin_lost": 26.029
    }
   }
  }
