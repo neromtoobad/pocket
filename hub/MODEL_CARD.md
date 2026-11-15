@@ -23,7 +23,7 @@ pipeline_tag: text-generation
 
 Research builds of [CohereLabs/tiny-aya-global](https://huggingface.co/CohereLabs/tiny-aya-global) used in **Pocket**, a study of whether Tiny Aya's safety survives GGUF quantization in English, Swahili, Yorùbá, Hausa and Igbo (Lexsi AI Safety & Alignment Hackathon).
 
-> **These are evaluation artifacts, not recommended deployments.** The uniform 3-bit and 2-bit files refuse harmful requests much less often outside English than Cohere's official files. For use, prefer Cohere's official GGUFs, or the safety-protected builds below once their results are in.
+> **These are evaluation artifacts, not recommended deployments.** Every 3-bit and 2-bit file here refuses harmful requests much less often outside English than Cohere's official files, including the imatrix builds (the safety-calibrated imatrix did not restore refusal). For use in Swahili, Yorùbá, Hausa or Igbo, prefer Cohere's official q4_k_m or larger.
 
 ## Files
 
@@ -48,8 +48,6 @@ llama.cpp b12403, from Cohere's official `tiny-aya-global-f16.gguf`:
 llama-imatrix -m tiny-aya-global-f16.gguf -f calib_safety.txt -o imatrix-safety.gguf -ngl 99 -c 512 --chunks 400
 llama-quantize tiny-aya-global-f16.gguf tiny-aya-global-q3_k_m.gguf q3_k_m
 llama-quantize --imatrix imatrix-safety.gguf tiny-aya-global-f16.gguf tiny-aya-global-q3_k_m-imat-safety.gguf q3_k_m
-# protected: safety-sensitive layer groups (from a crush-one-group sweep) kept at q6_k
-llama-quantize --imatrix imatrix-safety.gguf --tensor-type "blk\.(…)\..*=q6_k" tiny-aya-global-f16.gguf out.gguf q3_k_m
 ```
 
 Run with the model's own chat template (`llama-server --jinja`), which includes Cohere's default safety preamble.

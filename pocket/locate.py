@@ -57,7 +57,8 @@ dtype = torch.float16 if a.device == "mps" else torch.float32
 tok = AutoTokenizer.from_pretrained(a.model)
 model = AutoModelForCausalLM.from_pretrained(a.model, dtype=dtype).to(a.device).eval()
 n_layers = model.config.num_hidden_layers
-ext = SteeringVectorExtractor(model, tok, VectorExtractionConfig(target_layers=list(range(n_layers)),
+body = getattr(model, "model", model)  # decoder only: skip the 262k-vocab LM head, hooks read the layers
+ext = SteeringVectorExtractor(body, tok, VectorExtractionConfig(target_layers=list(range(n_layers)),
                               batch_size=a.batch, pool_method="last_token", normalize=True))
 
 # 1. directions per language from held-out prompts (SafeTune public API)

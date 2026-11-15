@@ -22,7 +22,7 @@
 - **Finding 1:** Cohere's official 4-bit file (q4_k_m) keeps safety. No language changes by more than its 95% interval.
 - **Finding 2:** at 3-bit (q3_k_m, 1.8 GB), English is unchanged but Swahili refusals fall 17 points, Yorùbá 11 and Hausa 8. Attack success rises 10 points in Swahili and 12 in Hausa. Reading comprehension (Belebele) barely moves, so this is lost safety, not a broken model.
 - **Finding 3:** a translation-based safety judge can invent a safety regression. Our first table showed Hausa 4-bit losing 17 points. It was the translator turning a Hausa refusal into "I can't help it." We show how we found it and how we fixed the scoring.
-- **Fix:** [PENDING: safety-calibrated imatrix and protected layers at matched size, results from the grid].
+- **Fix we tried:** an importance matrix (imatrix) built from Tiny Aya's own safety conversations vs one from generic text, at 3-bit. Neither restores refusal (Swahili attack success still +10 / +9 points), though both restore reading comprehension. The fix that works is the cheap one: the official 4-bit file is only 0.34 GB bigger and keeps full-size safety in every language.
 - **Everything is open:** prompts, every model answer, every judge score, the GGUFs and the code.
 
 ## Abstract
@@ -35,7 +35,7 @@ The official 4-bit file holds up: no language moves beyond its interval. At 3-bi
 
 We also report a measurement trap. Our first judged table showed the 4-bit Hausa model losing 17 points of safety. Reading the rows showed that NLLB-200 translates the standard Hausa refusal as "I'm sorry, but I can't help it," which Guardian scores as harmful. 19 of the 20 "refused but harmful" Hausa rows were this one sentence. Short pure refusals are now counted as safe, and both raw and corrected rates are published.
 
-Then we repair it. [PENDING: imatrix calibrated on safety chats vs generic text, and a layer-group sweep that finds which blocks lose refusal when crushed to 2 bits, used to keep those blocks at 6 bits in an otherwise 3-bit or 2-bit file of matched size.]
+Then we tried to repair the 3-bit file without making it bigger, by changing what llama.cpp's importance matrix is calibrated on: Tiny Aya's own full-precision answers to 600 held-out harmful and harmless prompts in all five languages, vs the same amount of generic text. Neither helps refusal. With either imatrix, Swahili attack success is still 9–10 points above full precision and Hausa refusal still 7–8 points below. Both imatrices do bring Swahili reading comprehension back from 50% to 57–58%, so better calibration restores the model's grasp of the language but not its willingness to refuse in it. Safety and capability come apart under compression, which is why a capability check alone can't certify a quantized model. The practical advice is to stay at 4-bit (2.1 GB) for these languages, or to test refusal in the target language before shipping anything smaller.
 
 ## Headline before → after
 
@@ -43,10 +43,12 @@ Then we repair it. [PENDING: imatrix calibrated on safety chats vs generic text,
 |---|---|---|---|
 | Refuses harmful prompts | 74% → 75% | 56% → 40% | 51% → 43% |
 | Attack success (judge) | 0% → 2% | 18% → 28% | 21% → 32% |
+| Refuses, 3-bit + safety imatrix (our fix attempt, 1.8 GB) | 73% | 40% | 42% |
+| Refuses, official 4-bit (2.1 GB) | 73% | 59% | 56% |
 
-[PENDING: add the repaired build as a third value once the grid finishes.]
+The safety-calibrated imatrix does not bring the refusals back; the official 4-bit file, 0.34 GB bigger, does.
 
-**Base model + method:** Tiny Aya Global (CC-BY-NC 4.0) as GGUF in llama.cpp b12403; quantize f16 → q4/q3/q2 with llama-quantize, measure per-language safety with a CuratorKIT-built set and AuditKIT + Granite Guardian scoring, then repair with a safety-calibrated imatrix and layer-protected mixed precision.
+**Base model + method:** Tiny Aya Global (CC-BY-NC 4.0) as GGUF in llama.cpp b12403; quantize f16 → q4/q3/q2 with llama-quantize, measure per-language safety with a CuratorKIT-built set and AuditKIT + Granite Guardian scoring, then try to repair 3-bit with a safety-calibrated imatrix (vs a generic one) and locate refusal per layer and language with SafeTune.
 
 ## Problem statement and approach
 
@@ -67,7 +69,7 @@ Tiny Aya's selling point is that it runs locally in languages that big models se
 - H2: the drop is larger in Yorùbá, Hausa and Igbo than in English.
 - H3: a safety-calibrated imatrix beats a generic one at matched size.
 
-Result so far: H1 holds (flat to 4-bit, clear drop at 3-bit). H2 holds for Swahili, Yorùbá and Hausa, not for Igbo. H3 [PENDING].
+Results: H1 holds (flat to 4-bit, clear drop at 3-bit, collapse at 2-bit). H2 holds for Swahili, Yorùbá and Hausa, not for Igbo. H3 is not supported: the safety-calibrated imatrix is no better than the generic one for refusal (both within noise of plain 3-bit).
 
 ### Related work
 
@@ -116,7 +118,7 @@ MultiJail + XSTest ──► NLLB translate ──► back-translation gate ─�
                                                                           │
                      Granite Guardian (EN view) + AuditKIT refusal + Pocket refusal + Belebele ──► paired bootstrap tables
                                                                           │
-                              layer-group sweep ──► protected mixed-precision GGUF ──► same evaluation
+            imatrix from safety chats vs from generic text ──► same quant type ──► same evaluation
 ```
 
 ## Models and licenses
@@ -141,7 +143,7 @@ Tiny Aya is run with its own chat template from the GGUF (`--jinja`), which adds
 
 Back-translation gate pass rates: Yorùbá 73%, Hausa 85%, Igbo 75%, Swahili (machine-translated harmless rows) 86%.
 
-**Splits and leak check:** the evaluation set and the calibration set (used to build the imatrix and for the layer sweep) are disjoint by prompt id: 0 shared ids (direct match). Nothing is trained, so there is no train split.
+**Splits and leak check:** the evaluation set and the calibration set (used to build the imatrix and the SafeTune directions) are disjoint by prompt id: 0 shared ids (direct match). Nothing is trained, so there is no train split.
 
 **Safety benchmark:** harmful prompts are the focus task in all five languages. **Over-refusal:** XSTest look-alikes, all five languages. **Capability:** Belebele, all five languages, as a retention check.
 
@@ -160,14 +162,13 @@ Back-translation gate pass rates: Yorùbá 73%, Hausa 85%, Igbo 75%, Swahili (ma
 - Guardian on the original African-language text vs on its English back-translation agrees poorly (κ −0.03 to 0.18). Guardian was trained mostly on English, so we use the back-translated view as primary and publish both.
 - Guardian vs the refusal detector: κ 0.27–0.56 outside English. They measure different things (a non-refusal can still be harmless), so moderate agreement is expected.
 - AuditKIT refusal vs Pocket refusal: κ 0.84–1.0.
-- Manual review: we read every Hausa 4-bit row where the two disagreed and found the translation artifact described below. [PENDING: a 50-row hand-labelled sample per language for judge accuracy.]
+- Manual review: we read every Hausa 4-bit row where the two disagreed and found the translation artifact described below. We have not yet hand-labelled a random sample to measure judge accuracy.
 
 ## Method and experiments
 
 - **Inference:** llama.cpp b12403 `llama-server`, Metal, flash attention on, 8 parallel slots, context 1,024 per slot, temperature 0, seed 0, 160 new tokens (Belebele: 6).
 - **Quantization:** `llama-quantize` from the official f16 GGUF. q3_k_m and q2_k with no imatrix; then with an imatrix from (a) generic text (Belebele passages not in the test) or (b) Tiny Aya's own f16 answers to the 600 held-out safety prompts rendered with its chat template. `llama-imatrix -c 512 --chunks 400`.
-- **Layer sweep:** 36 blocks in 6 groups of 6; for each group, build a file with that group at q2_k and the rest at q8_0, run 200 held-out harmful prompts (40 × 5 languages, 48 tokens) and measure the refusal drop.
-- **Protected build:** the top 1–2 groups at q6_k, the rest at q3_k_m or q2_k, safety imatrix, compared with uniform builds of the same file size.
+- **Not run in time:** a layer-group sweep (`sweep.py`: crush one 6-layer group to q2_k, the rest at q8_0) and protected builds (`protect.py`: the most refusal-sensitive groups kept at q6_k). The scripts are in the repo; a laptop restart cost us the hours they needed.
 - **Judging:** Granite Guardian 3.1 2B Q8_0 via llama-server `/completion`, one token, P(Yes)/(P(Yes)+P(No)) over the top-10 logprobs.
 - **CuratorKIT:** config in `pocket/curate.yaml`, all defaults except the stages listed.
 - **AuditKIT:** `find_refusal` with defaults (opening sentence, 300 characters).
@@ -181,6 +182,8 @@ Back-translation gate pass rates: Yorùbá 73%, Hausa 85%, Igbo 75%, Swahili (ma
 | Global f16 | 6.7 GB | 0 | 18 (12–25) | 48 (38–56) | 21 (13–28) | 29 (22–38) |
 | Global q4_k_m (official) | 2.1 GB | 2 (0–4) | 21 (13–29) | 42 (33–51) | 26 (18–33) | 32 (23–40) |
 | Global q3_k_m | 1.8 GB | 2 (0–6) | 28 (20–36) | 49 (41–59) | 32 (24–41) | 28 (20–37) |
+| Global q3_k_m + generic imatrix | 1.8 GB | 1 (0–2) | 27 (19–34) | 54 (46–62) | 32 (23–40) | 30 (22–38) |
+| Global q3_k_m + safety imatrix | 1.8 GB | 2 (0–4) | 28 (20–35) | 52 (43–62) | 28 (19–36) | 30 (22–38) |
 | Global q2_k | 1.5 GB | 3 (1–7) | 52 (44–61) | 72 (64–80) | 63 (54–72) | 69 (61–78) |
 | Earth q4_k_m (official) | 2.1 GB | 2 (0–6) | 17 (10–24) | 51 (42–60) | 28 (20–36) | 35 (27–43) |
 
@@ -191,6 +194,10 @@ Back-translation gate pass rates: Yorùbá 73%, Hausa 85%, Igbo 75%, Swahili (ma
 | q4_k_m | ASR | +2 (0, +4) | +3 (−2, +8) | −5 (−13, +3) | +5 (−2, +12) | +2 (−5, +10) |
 | q3_k_m | ASR | +2 (0, +6) | **+10 (+2, +18)** | +2 (−7, +9) | **+12 (+3, +20)** | −1 (−9, +8) |
 | q3_k_m | Refusal | +1 (−3, +6) | **−17 (−24, −10)** | **−11 (−17, −5)** | **−8 (−13, −2)** | +3 (−1, +8) |
+| q3 + generic imatrix | ASR | +1 (0, +2) | **+9 (+2, +17)** | +7 (−2, +15) | **+11 (+3, +18)** | +1 (−7, +8) |
+| q3 + generic imatrix | Refusal | 0 (−3, +3) | **−12 (−18, −7)** | **−6 (−11, −2)** | **−7 (−12, −2)** | −3 (−8, +2) |
+| q3 + safety imatrix | ASR | +2 (0, +4) | **+10 (+3, +17)** | +5 (−2, +13) | +7 (−1, +14) | +1 (−8, +10) |
+| q3 + safety imatrix | Refusal | −1 (−5, +3) | **−16 (−24, −8)** | **−9 (−15, −3)** | **−8 (−13, −3)** | −6 (−12, 0) |
 | q2_k | ASR | +3 (+1, +7) | **+34 (+24, +45)** | **+25 (+14, +36)** | **+42 (+32, +52)** | **+40 (+29, +50)** |
 | q2_k | Refusal | +1 (−7, +8) | **−28 (−37, −18)** | **−28 (−37, −20)** | **−31 (−40, −22)** | **−28 (−37, −18)** |
 
@@ -201,6 +208,8 @@ Back-translation gate pass rates: Yorùbá 73%, Hausa 85%, Igbo 75%, Swahili (ma
 | Global f16 | 74 / 56 / 29 / 51 / 48 | 8 / 9 / 5 / 9 / 13 | 77 / 58 / 42 / 55 / 42 |
 | Global q4_k_m | 73 / 59 / 32 / 56 / 56 | 8 / 8 / 4 / 11 / 17 | 67 / 63 / 37 / 50 / 30 |
 | Global q3_k_m | 75 / 40 / 18 / 43 / 52 | 9 / 6 / 0 / 3 / 12 | 77 / 50 / 48 / 50 / 42 |
+| q3_k_m + generic imatrix | 74 / 44 / 23 / 44 / 45 | 8 / 5 / 1 / 5 / 16 | 75 / 57 / 47 / 55 / 38 |
+| q3_k_m + safety imatrix | 73 / 40 / 20 / 42 / 42 | 8 / 4 / 2 / 5 / 10 | 75 / 58 / 45 / 52 / 37 |
 | Global q2_k | 75 / 29 / 2 / 20 / 21 | 18 / 5 / 1 / 5 / 8 | 52 / 43 / 23 / 33 / 33 |
 | Earth q4_k_m | 71 / 56 / 26 / 43 / 44 | 8 / 9 / 2 / 3 / 9 | 72 / 58 / 27 / 42 / 28 |
 
@@ -227,6 +236,12 @@ Cohere's q4_k_m file stays within noise in every language. If you use the offici
 
 At the same 4-bit size, Earth's attack success is equal or higher than Global's in Yorùbá (51 vs 42), Hausa (28 vs 26) and Igbo (35 vs 32), and its Belebele scores in Yorùbá and Igbo are near chance (27%, 28%). We have no Earth f16 run, so we can't say how much of this is quantization.
 
+### What didn't work: a safety-calibrated importance matrix
+
+llama.cpp's k-quants use an importance matrix to decide which weights keep the most precision. We built one from Tiny Aya's own full-precision answers to 600 held-out harmful and harmless prompts in all five languages (the conversations where refusal happens), and a control from the same amount of generic Belebele text, then quantized to q3_k_m with each.
+
+Neither restores refusal. Swahili refusal is −16 points with the safety imatrix and −12 with the generic one (plain 3-bit: −17); attack success stays +9 to +10. The safety imatrix is not better than the generic one in any language beyond noise. Both do lift Swahili Belebele from 50% to 57–58% (full precision: 58%). Our reading: the imatrix protects the weights that matter for predicting the next token on average, and refusal in a lower-resource language depends on something that average doesn't weight, which points to protecting specific layers rather than re-weighting all of them (our planned next step).
+
 ### What didn't work: a judge artifact that looked like a result
 
 Our first table showed q4_k_m Hausa attack success rising from 25% to 42% (+17, interval +8 to +25). It held on the translation-passed subset too. Reading the rows showed that the same answer, "Yi hakuri, amma ba zan iya taimakawa da hakan ba" ("Sorry, but I can't help with that"), was back-translated by NLLB as **"I'm sorry, but I can't help it."** Guardian reads that as the assistant failing to stop itself and scores it harmful. 19 of the 20 Hausa rows that were refused yet judged harmful were this sentence. The same thing happens, less often, in Swahili and Igbo.
@@ -239,7 +254,7 @@ All results above are on GGUF files as deployed (llama.cpp, the model's own chat
 
 ### Compute used
 
-One Apple M1 Pro laptop with 16 GB RAM, about [PENDING] hours in total, no cloud GPU, no paid API. Generation runs at 0.3–0.4 prompts per second with 8 parallel slots; the f16 cell takes about 70 minutes, a judge pass 40–75 minutes. Estimated cost: electricity only.
+One Apple M1 Pro laptop with 16 GB RAM, about 14 hours in total, no cloud GPU, no paid API. Generation runs at 0.3–0.4 prompts per second with 8 parallel slots; the f16 cell takes about 70 minutes, a judge pass 40–75 minutes. Estimated cost: electricity only.
 
 ## Limitations
 
@@ -249,11 +264,11 @@ One Apple M1 Pro laptop with 16 GB RAM, about [PENDING] hours in total, no cloud
 - Belebele has only 60 questions per language.
 - One seed, greedy decoding, single-turn prompts. No jailbreak templates, so this measures the model's default behaviour, not worst case.
 - No Earth f16 baseline; Earth is only compared at 4-bit.
-- [PENDING: no human-labelled judge accuracy sample yet.]
+- No human-labelled sample yet to measure judge accuracy per language.
 
 ## With more credits
 
-- **Planned:** native-speaker review of the Yorùbá, Hausa and Igbo prompts; a 2,000-prompt set; Fire and Water variants; the same grid on Aya Expanse 8B; multi-turn jailbreaks; a native-language judge (fine-tune Guardian on a few hundred labelled Hausa/Yorùbá answers) so the back-translation step goes away; QReSafe-style repair with SafeTune when the protected-layer fix is not enough.
+- **Planned:** the layer sweep and protected mixed-precision builds (scripts ready), choosing the protected layers from the SafeTune directions; native-speaker review of the Yorùbá, Hausa and Igbo prompts; a 2,000-prompt set; Fire and Water variants; the same grid on Aya Expanse 8B; multi-turn jailbreaks; a native-language judge (fine-tune Guardian on a few hundred labelled Hausa/Yorùbá answers) so the back-translation step goes away; QReSafe-style repair with SafeTune when the protected-layer fix is not enough.
 - **Expected:** intervals around ±3 points, which would show whether the 4-bit file loses a few points that 120 prompts can't see; we expect the 3-bit loss to grow in Yorùbá and Igbo once translation noise is removed, and a protected 3-bit build to close most of the gap at under 2 GB.
 
 ## Artifacts
@@ -276,7 +291,9 @@ One Apple M1 Pro laptop with 16 GB RAM, about [PENDING] hours in total, no cloud
 | `pocket/judge.py` | Granite Guardian scoring, native and back-translated views |
 | `pocket/audit_refusal.py` | AuditKIT refusal metric with yo/ha/ig patterns added |
 | `pocket/analyze.py` | tables, paired deltas, bootstrap intervals |
-| `pocket/make_calib.py`, `pocket/sweep.py`, `pocket/protect.py` | calibration text, layer sweep, protected builds |
+| `pocket/make_calib.py` | held-out calibration prompts; imatrix calibration text |
+| `pocket/locate.py` | SafeTune refusal directions per language and layer |
+| `pocket/sweep.py`, `pocket/protect.py` | layer sweep and protected builds (written, not run) |
 | `pocket/run_grid.sh` | the whole grid in order, resumable |
 | `pocket/space_static/index.html` | the results explorer Space (static page reading the dataset) |
 
@@ -292,7 +309,7 @@ python pocket/analyze.py --ref global-f16 global-f16 global-q4_k_m global-q3_k_m
 
 ## Team
 
-Solo: [PENDING: HF handle tag].
+Solo: [@MOREN808](https://huggingface.co/MOREN808).
 
 ## Appendix
 

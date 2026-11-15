@@ -13,7 +13,7 @@ Pocket measures whether [Tiny Aya](https://huggingface.co/CohereLabs/tiny-aya-gl
 | GGUF builds + imatrix files | [MOREN808/tiny-aya-global-pocket-gguf](https://huggingface.co/MOREN808/tiny-aya-global-pocket-gguf) |
 | Browse every answer | [MOREN808/pocket Space](https://huggingface.co/spaces/MOREN808/pocket) |
 
-## Results so far
+## Results
 
 Refuses harmful prompts, % (120 per language; higher is better):
 
@@ -22,7 +22,11 @@ Refuses harmful prompts, % (120 per language; higher is better):
 | f16 (official) | 6.7 GB | 74 | 56 | 29 | 51 | 48 |
 | q4_k_m (official) | 2.1 GB | 73 | 59 | 32 | 56 | 56 |
 | q3_k_m | 1.8 GB | 75 | 40 | 18 | 43 | 52 |
+| q3_k_m + generic imatrix | 1.8 GB | 74 | 44 | 23 | 44 | 45 |
+| q3_k_m + safety imatrix | 1.8 GB | 73 | 40 | 20 | 42 | 42 |
 | q2_k | 1.5 GB | 75 | 29 | 2 | 20 | 21 |
+
+Neither importance matrix restores refusal at 3-bit. The official 4-bit file (+0.34 GB) is the cheap fix.
 
 Attack success, judge-scored intervals, over-refusal, reading comprehension and the Earth variant are in [`results/table.md`](results/table.md) and the write-up.
 
@@ -35,7 +39,8 @@ MultiJail + XSTest ─► NLLB-200 translate ─► back-translation gate ─►
                                                                             │
    Granite Guardian (English view) + AuditKIT refusal + Pocket refusal + Belebele ─► paired bootstrap tables
                                                                             │
-   SafeTune refusal directions (f16) ─► layer-group sweep ─► protected mixed-precision GGUF ─► same evaluation
+   SafeTune refusal directions (f16) ─► margin vs refusals lost under quantization
+   (sweep.py / protect.py: layer-group sweep and protected mixed-precision build, written but not run in time)
 ```
 
 Lexsi kits used: [CuratorKIT](https://github.com/Lexsi-Labs/CuratorKIT) (data curation), [AuditKIT](https://github.com/Lexsi-Labs/AuditKIT) (multilingual refusal metric, extended here to Yorùbá, Hausa and Igbo) and [SafeTune](https://github.com/Lexsi-Labs/SafeTune) (per-language refusal directions with `SteeringVectorExtractor`).
