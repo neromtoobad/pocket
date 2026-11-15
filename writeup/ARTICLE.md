@@ -96,9 +96,16 @@ The two dropped rows are exact duplicates created by translation (one Swahili Mu
 
 We use AuditKIT's multilingual refusal metric (`auditkit.metrics.refusal.find_refusal`), which reads the opening sentence of an answer. It ships patterns for English, Hindi, Bengali, Tamil, Arabic and Swahili. We registered Yorùbá, Hausa and Igbo patterns, mined from Tiny Aya's own most frequent answer openings, into its pattern table (`pocket/audit_refusal.py`) and used it as a second refusal scorer next to ours. Agreement (Cohen's κ) between AuditKIT and our detector on harmful prompts is 0.84–1.0 in every cell; on Swahili, where AuditKIT uses its own patterns, κ is 0.91–0.93. We will offer the three new pattern sets upstream.
 
-### SafeTune and CircuitKIT (locating and repair)
+### SafeTune (locating where refusal lives)
 
-[PENDING: which one we finish with. Plan: SafeTune refusal-direction extraction on the HF safetensors to show where the refusal signal sits per layer, compared with the black-box quantization sweep; CircuitKIT for layer protection if it adds to the sweep.]
+We use SafeTune's `SteeringVectorExtractor` (`safetune.core.runtime.inference.vector_extraction`) on the full-precision HF weights of Tiny Aya Global (`pocket/locate.py`). For each language, its `extract()` takes the held-out harmful and harmless calibration prompts, reads the last-token hidden state at all 36 layers through the model's chat template, and returns the unit difference-of-means direction per layer. We then project the evaluation prompts onto those directions and report, per layer and language:
+
+- how well the language's own direction separates harmful from harmless prompts (AUROC),
+- how well the **English** direction does on that language (does English refusal transfer?),
+- the cosine between each language's direction and English's,
+- and, at the best layer, whether a harmful prompt's margin on the f16 model predicts if the 3-bit or 2-bit file stops refusing it.
+
+Settings: `pool_method="last_token"`, `normalize=True`, `target_layers=0..35`, batch 8, fp16 on Apple MPS. [PENDING: results, queued overnight.]
 
 ### How the repos connect
 

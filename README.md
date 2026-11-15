@@ -35,10 +35,10 @@ MultiJail + XSTest ─► NLLB-200 translate ─► back-translation gate ─►
                                                                             │
    Granite Guardian (English view) + AuditKIT refusal + Pocket refusal + Belebele ─► paired bootstrap tables
                                                                             │
-                         layer-group sweep ─► protected mixed-precision GGUF ─► same evaluation
+   SafeTune refusal directions (f16) ─► layer-group sweep ─► protected mixed-precision GGUF ─► same evaluation
 ```
 
-Lexsi kits used: [CuratorKIT](https://github.com/Lexsi-Labs/CuratorKIT) (data curation) and [AuditKIT](https://github.com/Lexsi-Labs/AuditKIT) (multilingual refusal metric, extended here to Yorùbá, Hausa and Igbo).
+Lexsi kits used: [CuratorKIT](https://github.com/Lexsi-Labs/CuratorKIT) (data curation), [AuditKIT](https://github.com/Lexsi-Labs/AuditKIT) (multilingual refusal metric, extended here to Yorùbá, Hausa and Igbo) and [SafeTune](https://github.com/Lexsi-Labs/SafeTune) (per-language refusal directions with `SteeringVectorExtractor`).
 
 ## Repo layout
 
@@ -53,6 +53,7 @@ Lexsi kits used: [CuratorKIT](https://github.com/Lexsi-Labs/CuratorKIT) (data cu
 | `pocket/refusal.py` | lexical refusal detector for en / sw / yo / ha / ig |
 | `pocket/audit_refusal.py` | AuditKIT refusal metric with yo / ha / ig patterns registered |
 | `pocket/analyze.py` | per-build, per-language tables, paired deltas vs f16, bootstrap intervals |
+| `pocket/locate.py` | SafeTune refusal directions per language and layer; margin vs refusals lost under quantization |
 | `pocket/sweep.py` | crush one 6-layer group to q2_k at a time, measure the refusal drop |
 | `pocket/protect.py` | keep the most safety-sensitive groups at q6_k in a 3-bit / 2-bit build |
 | `pocket/run_grid.sh`, `run_grid2.sh` | the full grid (original order) and the trimmed order actually run |
